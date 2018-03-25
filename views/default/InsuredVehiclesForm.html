@@ -1,0 +1,56 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Insured Vehicles<small><i class="ace-icon fa fa-angle-double-right"></i> a data entry for insured vehicles.</small></h1>
+</div>
+
+{{=form.custom.begin}}
+<div class="widget-box">
+  <div class="widget-header">
+    <h4 class="widget-title">Insured Vehicle Form</h4>
+    <div class="widget-toolbar">
+    <a href="#" data-action="collapse">
+        <i class="ace-icon fa fa-chevron-up"></i>
+    </a>
+    </div>
+
+  </div>
+  <div class="widget-body">
+  <div class="widget-main">
+    <div class="row">
+        <div class="form-horizontal col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Policy No.:</label>
+                <div class="col-sm-8">{{=form.custom.widget.policy_no_id}}</div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Reg.No.:</label>
+                <div class="col-sm-8">{{=form.custom.widget.reg_no_id}}</div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Passenger Covered:</label>
+                <div class="col-sm-8">{{=form.custom.widget.passenger_covered}}</div>
+            </div>        
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Amount Insured:</label>
+                <div class="col-sm-8">{{=form.custom.widget.amount_insured}}</div>
+            </div>  
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Excess:</label>
+                <div class="col-sm-8">{{=form.custom.widget.excess}}</div>
+            </div>                                     
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Amount:</label>
+                <div class="col-sm-8">{{=form.custom.widget.amount}}</div>
+            </div>                        
+            <div class="form-group">
+                <label class="col-sm-4 control-label"></label>
+                <div class="col-sm-8">{{=form.custom.submit}}{{=form.custom.end}}</div>
+            </div>            
+        </div>            
+    </div>
+</div>
+</div>
+</div>
+
+
+

@@ -1,0 +1,146 @@
+{{extend 'layout.html'}}
+<style>
+p, h1, form, button{border:0; margin:0; padding:0;}
+.spacer{clear:both; height:1px;}
+/* ----------- My grid ----------- */
+.myform{
+margin:0 auto;
+width:100%;
+background: -moz-linear-gradient(left,  rgba(243,226,199,0.8) 0%, rgba(193,158,103,0.8) 28%, rgba(193,158,103,0.8) 70%, rgba(233,212,179,0.8) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(243,226,199,0.8)), color-stop(28%,rgba(193,158,103,0.8)), color-stop(70%,rgba(193,158,103,0.8)), color-stop(100%,rgba(233,212,179,0.8))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(243,226,199,0.8) 0%,rgba(193,158,103,0.8) 28%,rgba(193,158,103,0.8) 70%,rgba(233,212,179,0.8) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(243,226,199,0.8) 0%,rgba(193,158,103,0.8) 28%,rgba(193,158,103,0.8) 70%,rgba(233,212,179,0.8) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(243,226,199,0.8) 0%,rgba(193,158,103,0.8) 28%,rgba(193,158,103,0.8) 70%,rgba(233,212,179,0.8) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(243,226,199,0.8) 0%,rgba(193,158,103,0.8) 28%,rgba(193,158,103,0.8) 70%,rgba(233,212,179,0.8) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccf3e2c7', endColorstr='#cce9d4b3',GradientType=1 ); /* IE6-9 */
+
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+
+padding:14px;
+}
+h1 {
+font-size:30px;
+font-weight:bold;
+
+}
+.tablehead {
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	color: #FFF;
+
+background: -moz-linear-gradient(left,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 80%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.65)), color-stop(80%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+
+}
+#stylized p{
+font-size:11px;
+color: #FFF;
+
+
+
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+}
+#stylized .small{
+color:#000;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+
+#titlehead{
+	color:black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+        padding-left: 20px;
+}
+#subtitle{
+	background-color: #000;
+        padding-left: 40px;
+        font-style: italic;
+         
+}
+</style>
+
+<div id="stylized">
+{{=form.custom.begin}}
+    <table  class="myform" width="100%">
+        <tr><td colspan="4" id="titlehead"><h1>Vehicle Maintenance Form</h1></td></tr>
+        <tr><td colspan="4" id="subtitle"><p>This is the entry for the company vehicle maintenance.</p> </td></tr>
+        <tr><td colspan="4" class="tablehead">Invoice Info </td></tr>
+        <tr>
+            <td><label>Reg.No.:</label><span class="small">Add the registration number.</span></td>
+            <td>{{=form.custom.widget.reg_no_id}}</td>
+            <td><label>Invoice No.:</label><span class="small">Add the invoice number.</span></td>
+            <td>{{=form.custom.widget.invoice_number}}</td>
+        </tr>
+        <tr>
+            <td><label>Invoice Date:</label><span class ="small">Add the invoice date.</span></td>
+            <td>{{=form.custom.widget.invoice_date}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr><td colspan="4" class="tablehead">Expenditure Info</td></tr>
+        <tr>
+            <td><label>Running Expenses:</label><span class="small">Tyre, Battery, Puncture, Brake, Clutch, etc.</span></td>
+            <td>{{=form.custom.widget.running_expenses}}</td>
+            <td><label>Regular Maintenance:</label><span class="small">Service, Oil/Filter Change</span></td>
+            <td>{{=form.custom.widget.regular_maintenance}}</td>
+        </tr>
+        <tr>
+            <td><label>Repair Expenses:</label><span class="small">Engine Repair, Mechanical Repair, Painting, etc.</span></td>
+            <td>{{=form.custom.widget.repair_expenses}}</td>
+            <td><label>Accident Repair:</label><span class="small">Add accident repair.</span></td>
+            <td>{{=form.custom.widget.accident_repair}}</td>            
+        </tr>
+        <tr>
+            <td><label>Statutory Expenses:</label><span class="small">Insurance, Road Permit Renewal, Advertisement License</span></td>
+            <td>{{=form.custom.widget.statutory_expenses}}</td>
+            <td><label>Spare Parts:</label><span class="small">Add spare parts</span></td>
+            <td>{{=form.custom.widget.spare_parts}}</td>            
+        </tr>
+        <tr><td colspan="4" class="tablehead">Other's Info</td></tr>
+        <tr>
+            <td><label>Workshop Done:</label><span class="small">Add the workshop done.</span></td>
+            <td>{{=form.custom.widget.workshop_done}}</td>
+            <td><label>Mileage:</label><span class="small">Add the mileage.</span></td>
+            <td>{{=form.custom.widget.mileage}}</td>
+        </tr>
+        <tr>
+            <td><label>Details:</label><span class="small">Add details here.</span></td>
+            <td>{{=form.custom.widget.details}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{=form.custom.submit}}</td>
+            <td>{{=form.custom.end}}</td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+</div>
+

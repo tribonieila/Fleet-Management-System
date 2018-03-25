@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+
+   <table id="person-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Reg.No.</th>
+                <th>Station</th>
+
+            </tr>
+        </thead>
+    </table>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#person-table").DataTable({
+
+        data:  {{=results}},
+
+        columns: [
+            { data: "date_expense"},
+            { data: "reg_no_id"},
+            { data: "station"}
+
+            
+            // 'id' omitted to show that you can
+            // use only the fields you choose
+        ]
+    })
+});
+</script>

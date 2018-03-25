@@ -1,0 +1,6 @@
+{{extend 'layout.html'}}
+<h3>Insured Vehicles</h3>
+{{=LOAD('default','InsuranceInfo.load', args = request.args(0))}}
+{{=grid}}
+
+

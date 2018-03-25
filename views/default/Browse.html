@@ -1,0 +1,95 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Fleets<small><i class="ace-icon fa fa-angle-double-right"></i> Access list of fleets</small></h1>
+</div>
+
+<div class="flash">{{=response.flash or ''}}</div>
+<div class="hr hr8 hr-single hr-dotted"></div>
+
+<div class="table-header">Results for "Latest fleets"</div>
+{{=table}}
+
+Legend: * 
+<a><span class="fa fa-flag green bigger-30"></span></a> - <small>Good Fleet Status</small> *
+<a><span class="fa fa-flag orange bigger-30"></span></a> - <small>Expired Reg.No.</small> *
+<a><span class="fa fa-flag blue bigger-30"></span></a> - <small>Expired Fleet Insurance</small> *
+<a><span class="fa fa-flag red bigger-30"></span></a> - <small>Cancelled Fleet</small>
+
+
+
+<!-- ace scripts -->
+<link rel="stylesheet" href="{{=URL('static','css/ace/colorbox.min.css')}}" />
+<script src="{{=URL('static','js/ace/jquery.colorbox.min.js')}}"></script>
+
+
+<script type="text/javascript">
+    jQuery(function($) {
+        var $overflow = '';
+        var colorbox_params = {
+            rel: 'colorbox',
+            reposition:true,
+            scalePhotos:true,
+            scrolling:false,
+            close:'&times;',
+            maxWidth:'100%',
+            maxHeight:'100%',
+            trapFocus:  false,
+            rel:     'nofollow', 
+            onOpen:function(){
+                $overflow = document.body.style.overflow;
+                document.body.style.overflow = 'hidden';
+            },
+            onClosed:function(){
+                document.body.style.overflow = $overflow;
+            },
+            onComplete:function(){
+                $.colorbox.resize();
+            }
+    };
+
+    $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+    $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
+    
+    
+    $(document).one('ajaxloadstart.page', function(e) {
+        $('#colorbox, #cboxOverlay').remove();
+
+   });
+})
+</script>
+<script>
+$(document).ready(function() {
+    var myTable = $('table.table')
+    
+    .DataTable( {
+        bAutoWidth: false,
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false
+        } ],
+        "order": [[ 1, 'asc' ]],
+    });
+				
+	new $.fn.dataTable.Buttons( myTable, {
+		buttons: [
+
+		  {
+			"extend": "excel",
+			"exportOptions": {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ] },			
+            "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> Export to Excel",
+            "titleAttr": " Export to Excel",
+            "className": "btn btn-link"
+		  }  
+		]
+	} );
+	myTable.buttons().container().appendTo( '#' + myTable.table().container().id + ' .col-sm-6:eq(0)' ); 
+} );
+</script>                
+<style>
+.dataTables_length, .dt-buttons {
+  float: left;
+  margin-right: 10px;    
+}
+
+</style>

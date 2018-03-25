@@ -1,0 +1,37 @@
+{{extend 'layout.html'}}
+<h2 align = 'center'>Fuel Expenses Form</h2>
+{{=grid.custom.begin}}
+    <table width="100%">
+        <tr>
+            <td>Reg.No.:</td>
+            <td>{{=grid.custom.widget.reg_no_id}}</td>
+            <td>Date:</td>
+            <td>{{=grid.custom.widget.date_expense}}</td>
+        </tr>
+
+        <tr>
+            <td>Amount Filled:</td>
+            <td>{{=grid.custom.widget.amount}}</td>
+            <td>Paid By:</td>
+            <td>{{=grid.custom.widget.paid_by}}</td>
+        </tr>
+
+        <tr>
+            <td>Station:</td>
+            <td>{{=grid.custom.widget.station}}</td>
+            <td>Remarks:</td>
+            <td>{{=grid.custom.widget.remarks}}</td>
+        </tr>
+        <tr>
+            <td>Print after submit?</td>
+            <td>{{=grid.custom.widget.printys}}</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>{{=grid.custom.submit}}</td>
+            <td>{{=grid.custom.end}}</td>
+            <td></td>
+        </tr>
+    </table>
+

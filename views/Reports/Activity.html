@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Activities<small><i class="ace-icon fa fa-angle-double-right"></i> a summary fleet controller activity.</small></h1>
+</div>
+<div class="flash">{{=response.flash or ''}}</div>
+<div class="hr hr8 hr-single hr-dotted"></div>
+
+<div class="table-header">Results for "Latest fleet activities"</div>
+{{=LOAD('Reports','Load_Activity.load', ajax = True)}}
+

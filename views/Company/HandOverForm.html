@@ -1,0 +1,128 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Fleet Hand Over<small><i class="ace-icon fa fa-angle-double-right"></i> a data entry for the fleet hand over.</small></h1>
+</div>
+
+<div class="widget-box">
+  	<div class="widget-header"><h4 class="widget-title">Hand-Over Form</h4><div class="widget-toolbar"><a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a></div></div>
+  	<div class="widget-body">
+		<div class="widget-main">
+		    <div class='row'>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>Reg.No</label>
+		                {{=form.custom.widget.reg_no_id}}
+		            </div>
+		        </div>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>Date and Time</label>
+		                {{=form.custom.widget.date_and_time}}
+		            </div>
+		        </div>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>Mileage</label>
+		                {{=form.custom.widget.mileage}}
+		            </div>
+		        </div>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>Accessories</label>
+		                {{=form.custom.widget.vehicles_acc}}
+		            </div>
+		        </div>
+		    </div>
+
+		    <div class='row'>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>From Department</label>
+		                {{=form.custom.widget.from_department_id}}
+		            </div>
+		        </div>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>To Department</label>
+		                {{=form.custom.widget.to_department_id}}
+		            </div>
+		        </div>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>From Driver</label>
+		                {{=form.custom.widget.from_driver_id}}
+		            </div>
+		        </div>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>To Driver</label>
+		                {{=form.custom.widget.to_driver_id}}
+		            </div>
+		        </div>
+		    </div>
+
+		    <div class='row'>
+		        <div class='col-md-3'>
+		            <div class='form-group'>
+		                <label>Remarks</label>
+		                {{=form.custom.widget.remarks}}
+		            </div>
+		        </div>
+		    </div>
+		    {{=form.custom.submit}}
+		    {{=form.custom.end}}
+
+	   	</div>
+	</div>
+ </div>    
+
+  <div class="clearfix">
+        <div class="pull-right tableTools-container"></div>
+    </div>
+    <div class="table-header">
+        Results for "Latest Fleet Hand-Over"
+    </div>
+    {{=table}}
+
+
+
+<script>
+$(document).ready(function() {
+    var myTable = $('table.table')
+    
+    .DataTable( {
+        bAutoWidth: false,
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 1, 'desc' ]],
+    });
+ 
+
+    myTable.on('order.dt search.dt', function () {
+        myTable.table(this).column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i+1;
+        });
+    }).draw();
+
+	
+				
+	new $.fn.dataTable.Buttons( myTable, {
+		buttons: [
+
+		  {
+			"extend": "excel",
+			"exportOptions": {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ] },			
+			"text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+			"titleAttr": "Export to Excel",
+			"className": "btn btn-white btn-primary btn-bold"
+		  }  
+		]
+	} );
+	myTable.buttons().container().appendTo( $('.tableTools-container') );
+} );
+</script>                
+ 

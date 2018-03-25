@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+    <!-- Always force latest IE rendering engine
+         (even in intranet) & Chrome Frame
+         Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <!--  Mobile Viewport Fix
+          j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+          device-width: Occupy full width of the screen in its current orientation
+          initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+          user-scalable = yes allows the user to zoom in -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{=response.title or request.application}}</title>
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="{{=request.application}}">
+    <!-- Speaking of Google, don't forget to set your site up:
+         http://google.com/webmasters -->
+    <meta name="google-site-verification" content="">
+
+    <!-- include stylesheets -->
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap3.css')}}"/>
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+
+    <!-- include new stylesheets 
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />       -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+    <!-- text fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="{{=URL('static','css/ace/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="{{=URL('static','css/ace/ace-skins.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static','css/ace/ace-rtl.min.css')}}" />
+    
+    <!-- <link rel="stylesheet" href="{{=URL('static','css/ace/bootstrap.min.css')}}"/> -->    
+    <!-- ace settings handler -->
+
+    <script src="{{=URL('static','js/ace/ace-extra.min.js')}}"></script>
+
+    <script src="{{=URL('static','js/pace/pace.min.js')}}"></script>
+    <link rel="stylesheet" href="{{=URL('static','js/pace/themes/blue/pace-theme-center-simple.css')}}"/>
+    <!-- end new stylesheets -->
+
+    <!--[if lt IE 9]>
+        <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
+        <![endif]-->
+    <!-- Favicons -->
+    {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+    
+    {{block head}}{{end}}
+    {{
+    # using sidebars need to know what sidebar you want to use
+    mc0 = 'col-md-12'
+    mc1 = 'col-md-9'
+    mc2 = 'col-md-6'
+    left_sidebar_enabled = globals().get('left_sidebar_enabled', False)
+    right_sidebar_enabled = globals().get('right_sidebar_enabled', False)
+    middle_column = {0: mc0, 1: mc1, 2: mc2}[
+    (left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)]
+    }}
+
+        <script type="text/javascript">
+            jQuery(function($) {
+                $('[data-rel="popover"]').popover();
+                $('[data-rel="tooltip"]').tooltip();
+
+            })
+        </script>
+
+</head>
+<body class="no-skin">
+        <div id="navbar" class="navbar navbar-default">
+            <script type="text/javascript">
+                try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+            </script>
+
+            <div class="navbar-container" id="navbar-container">
+                <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                    <span class="sr-only">Toggle sidebar</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div class="navbar-header pull-left">
+                    <a href="#" class="navbar-brand">Fleet Management System</a>
+                </div>
+                {{if (auth.user_id):}}        
+                <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                    <ul class="nav ace-nav">
+                        <li class="light-blue dropdown-modal">
+                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                <!-- <img class="nav-user-photo" src="{{=URL('static','images/images.jpeg')}}" alt="User's Photo" /> -->
+                                <span class="user-info"><small>Welcome, </small>{{=auth.user.first_name}} </span>
+
+                                <!-- <i class="ace-icon fa fa-caret-down"></i>  -->
+                            </a>
+
+                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                                <li><a href="{{=URL('default','Profile')}}"><i class="ace-icon fa fa-user"></i>Profile</a>
+                                </li><li class="divider"></li><li><a href="{{=URL('default','user/logout')}}"><i class="ace-icon fa fa-power-off"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                {{pass}}
+            </div><!-- /.navbar-container -->
+        </div>
+        {{if (auth.user_id != None) & (auth.has_membership(role = 'level_1_user') | (auth.has_membership(role = 'level_3_user'))):}}     
+        <div class="main-container ace-save-state" id="main-container">
+            <script type="text/javascript">
+                try{ace.settings.loadState('main-container')}catch(e){}
+            </script>
+
+            <div id="sidebar" class="sidebar responsive ace-save-state">
+                <script type="text/javascript">
+                    try{ace.settings.loadState('sidebar')}catch(e){}
+                </script>
+
+                <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                    <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                        <span class="btn btn-success"></span>
+                        <span class="btn btn-info"></span>
+                        <span class="btn btn-warning"></span>
+                        <span class="btn btn-danger"></span>
+                    </div>
+                </div><!-- /.sidebar-shortcuts -->
+        
+        
+
+                <ul class="nav nav-list">
+                    <li class="active"><a href="{{=URL('default','index')}}"><i class="menu-icon fa fa-tachometer"></i><span class="menu-text"> Dashboard </span></a><b class="arrow"></b></li>
+
+                    <li class="">
+                        <a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-folder-open-o"></i><span class="menu-text">Access</span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class=""><a href="{{=URL('default','Browse')}}"><i class="menu-icon fa fa-caret-right"></i>Fleet</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','ExpirationNotification')}}"><i class="menu-icon fa fa-caret-right"></i>Expired Notification</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','InsurancePolicy')}}"><i class="menu-icon fa fa-caret-right"></i>Insurance Policy</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','Advertisement')}}"><i class="menu-icon fa fa-caret-right"></i>Advertisement</a><b class="arrow"></b></li>                            
+                            <li class=""><a href="{{=URL('default','Cancelled')}}"><i class="menu-icon fa fa-caret-right"></i>Cancelled</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','HandOver')}}"><i class="menu-icon fa fa-caret-right"></i>Hand-Over</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','Driver')}}"><i class="menu-icon fa fa-caret-right"></i>Drivers</a><b class="arrow"></b></li>
+                        </ul>
+                    </li>
+
+                    <li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-file-text-o"></i><span class="menu-text">Create </span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class=""><a href="{{=URL('default','VehicleProfileForm')}}"><i class="menu-icon fa fa-caret-right"></i>New Fleet</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','ExpensesForm')}}"><i class="menu-icon fa fa-caret-right"></i>Fleet Expenses</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','FuelExpensesBatchForm')}}"><i class="menu-icon fa fa-caret-right"></i>Fuel Batch Entry</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','InsuranceForm')}}"><i class="menu-icon fa fa-caret-right"></i>Insurance</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','AdvertisementForm')}}"><i class="menu-icon fa fa-caret-right"></i>Advertisement</a><b class="arrow"></b></li>                            
+                            <li class=""><a href="{{=URL('default','PhotosForm')}}"><i class="menu-icon fa fa-caret-right"></i>Upload Photo's</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','HandOverForm')}}"><i class="menu-icon fa fa-caret-right"></i>Hand-Over</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('default','DriverForm')}}"><i class="menu-icon fa fa-caret-right"></i>Drivers</a><b class="arrow"></b></li>
+
+                        </ul>
+                    </li>
+                    <li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-print"></i><span class="menu-text"> Reports </span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class=""><a href="{{=URL('Reports','VehicleSummaryReport')}}"><i class="menu-icon fa fa-caret-right"></i>Summary</a><b class="arrow"></b></li> 
+                            <li class=""><a href="{{=URL('Reports','DivisionCostPerYear')}}"><i class="menu-icon fa fa-caret-right"></i>Cost per Year</a><b class="arrow"></b></li>                         
+                            <li class=""><a href="{{=URL('MaintenanceReports','RepairExpensesReport')}}"><i class="menu-icon fa fa-caret-right"></i>Maintenance Expenses</a><b class="arrow"></b></li>                         
+                            <li class=""><a href="{{=URL('FuelReports','FuelExpensesReport')}}"><i class="menu-icon fa fa-caret-right"></i>Fuel Expenses</a><b class="arrow"></b></li>                         
+                            <li class=""><a href="{{=URL('Reports','VehicleMileageReport')}}"><i class="menu-icon fa fa-caret-right"></i>Mileage</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('Reports','HOReport')}}"><i class="menu-icon fa fa-caret-right"></i>Hand-Over</a><b class="arrow"></b></li>                                     
+                            <li class=""><a href="{{=URL('Reports','Activity')}}"><i class="menu-icon fa fa-caret-right"></i>Activity</a><b class="arrow"></b></li>                           
+                        </ul>
+                    </li>
+               
+                </ul><!-- /.nav-list -->
+
+                <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                    <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+                </div>
+
+            </div>
+        {{pass}}
+
+        {{if (auth.user_id != None) &  (auth.has_membership(role = 'level_2_user')):}}     
+        <div class="main-container ace-save-state" id="main-container">
+            <script type="text/javascript">
+                try{ace.settings.loadState('main-container')}catch(e){}
+            </script>
+
+            <div id="sidebar" class="sidebar responsive ace-save-state">
+                <script type="text/javascript">
+                    try{ace.settings.loadState('sidebar')}catch(e){}
+                </script>
+
+                <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                    <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                        <span class="btn btn-success"></span>
+                        <span class="btn btn-info"></span>
+                        <span class="btn btn-warning"></span>
+                        <span class="btn btn-danger"></span>
+                    </div>
+                </div><!-- /.sidebar-shortcuts -->        
+                <ul class="nav nav-list">
+                    <li class="active"><a href="{{=URL('Company','Dashboard')}}"><i class="menu-icon fa fa-tachometer"></i><span class="menu-text"> Dashboard </span></a><b class="arrow"></b></li>
+                    <li><a href="{{=URL('Company','Fleets')}}"><i class="menu-icon fa fa-car"></i><span class="menu-text">Fleets</span></a><b class="arrow"></b></li>
+                    <li><a href="{{=URL('Company','Maintenance')}}"><i class="menu-icon fa fa-wrench"></i><span class="menu-text">Maintenance</span></a><b class="arrow"></b></li>
+                    <li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-ticket"></i><span class="menu-text"> Fuel </span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class=""><a href="{{=URL('Company','Fuel')}}"><i class="menu-icon fa fa-caret-right"></i>One Entry</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('Company','FuelExpensesBatchForm')}}"><i class="menu-icon fa fa-caret-right"></i>Batch Entry</a><b class="arrow"></b></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{=URL('Company','Mileage')}}"><i class="menu-icon fa fa-road"></i><span class="menu-text">Mileage</span></a><b class="arrow"></b></li>
+                    <li><a href="{{=URL('Company','HandOver')}}"><i class="menu-icon fa fa-files-o"></i><span class="menu-text">Hand-Over</span></a><b class="arrow"></b></li>
+
+                    <li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-print"></i><span class="menu-text"> Reports </span><b class="arrow fa fa-angle-down"></b></a><b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class=""><a href="{{=URL('Company','VehicleSummaryReport')}}"><i class="menu-icon fa fa-caret-right"></i>Summary</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('Company','DivisionCostPerYear')}}"><i class="menu-icon fa fa-caret-right"></i>Cost per Year</a><b class="arrow"></b></li>                         
+                            <li class=""><a href="{{=URL('Company','DivisionMaintenanceReport')}}"><i class="menu-icon fa fa-caret-right"></i>Repair Expenses</a><b class="arrow"></b></li>                         
+                            <li class=""><a href="{{=URL('Company','DivisionFuelReport')}}"><i class="menu-icon fa fa-caret-right"></i>Fuel Expenses</a><b class="arrow"></b></li>                         
+                            <li class=""><a href="{{=URL('Company','DivisionMileageReport')}}"><i class="menu-icon fa fa-caret-right"></i>Mileage</a><b class="arrow"></b></li>
+                            <li class=""><a href="{{=URL('Company','DivisionHandOverReport')}}"><i class="menu-icon fa fa-caret-right"></i>Hand-Over</a><b class="arrow"></b></li>                                     
+                        </ul>
+                    </li>
+               
+                </ul><!-- /.nav-list -->
+                <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                    <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+                </div>
+
+            </div>            
+        {{pass}}        
+            <div class="main-content">
+                <div class="main-content-inner">
+                    {{if (auth.user_id):}}        
+                    <div class="breadcrumbs" id="breadcrumbs">
+                        <script type="text/javascript">
+                            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+                        </script>
+
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="ace-icon fa fa-home home-icon"></i>
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="active">Dashboard</li>
+                        </ul><!-- /.breadcrumb -->
+                        
+                        <div class="pull-right tableTools-container">
+                            <a class="blue" 
+                            data-content="<table style='font-size:10px;'><tr><td>Sys. Dev.: </td><td>HILARIO VILLAR (Gatco)</td></tr>
+                            <tr><td>Email: </td><td>hilario@darwish-group.com</td></tr>
+                            <tr><td>Phone: </td><td>+974-4460-0656</td></tr></table>" 
+                            data-html="true" 
+                            data-original-title="<i class='ace-icon fa fa-info-circle blue'></i> Contact Info" 
+                            data-placement="left" 
+                            data-rel="popover" 
+                            data-trigger="focus" 
+                            role="button" 
+                            tabindex="0">Ask for Help?
+                            </a>
+                            
+                        </div>
+                    </div>                
+                    {{pass}}
+                <!-- Masthead ===================================== -->    
+                    {{if (auth.user_id):}}     
+                    <div class="page-content">
+                        <div class="ace-settings-container" id="ace-settings-container" style="margin-right:50px;">
+                            <img style='width:95x; height:70px;' src="{{=URL('static','images/image003.png')}}" />
+                        </div>
+
+                    </div>
+                    {{pass}}
+                <!-- Main ========================================= -->
+                    <div class="page-content">    
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {{block center}}
+                                {{include}}
+                                {{end}}                                
+                            </div>
+                        </div>
+
+                    </div><!-- /.page-content -->
+                </div>
+                    
+                    
+
+            </div><!-- /.main-content -->
+
+        
+         
+            <div class="footer" style="position:initial;">
+                <div class="footer-inner">
+                    <div class="footer-content">
+                        <span class="bigger-120">
+                            <span class="blue bolder">Darwish Group </span> <small>| Fleet Management System &copy; 2013-{{=request.now.year}}</small>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+
+
+            
+            
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"><i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i></a>
+        </div><!-- /.main-container -->
+
+        <!-- The javascript =============================== -->
+        <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+        <script src="{{=URL('static','js/web2py-bootstrap3.js')}}"></script>
+
+        <!-- datatable scripts   
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.6/jq-2.2.3/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/datatables.min.js"></script> --> 
+
+        {{block page_js}}{{end page_js}}
+        
+        {{if response.google_analytics_id:}}
+        <!-- Analytics ==================================== -->
+        <script src="{{=URL('static','js/analytics.min.js')}}"></script>
+        <script type="text/javascript">
+          analytics.initialize({
+          'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'}
+          });
+        </script>
+        {{pass}}
+
+
+        <!-- ace scripts -->
+        <script src="{{=URL('static','js/ace/ace-elements.min.js')}}"></script>
+        <script src="{{=URL('static','js/ace/ace.min.js')}}"></script>
+
+
+        <!-- ractive scripts -->
+    
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ractive/0.7.3/ractive.min.js"></   cript> -->
+        <!-- dataTables scripts -->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.3/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/datatables.min.js"></script>
+        
+        <!-- highcharts scripts -->
+        <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>    
+        <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    </body>
+</html>

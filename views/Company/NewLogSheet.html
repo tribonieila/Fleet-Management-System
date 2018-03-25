@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+<h3>New Log Sheet</h3>
+{{if grid.create_form:}}
+{{=grid.create_form.custom.begin}}
+
+<table>
+    <tr>
+        <td>Reg. No.:</td><td>{{=grid.create_form.custom.widget.reg_no_id}}</td>
+    </tr>
+    <tr>
+        <td>Date Log:</td><td>{{=grid.create_form.custom.widget.date_log}}</td>
+    </tr>
+    <tr>
+        <td>Purpose:</td><td>{{=grid.create_form.custom.widget.purpose}}</td>
+    </tr>
+    <tr>
+        <td>Time Out:</td><td>{{=grid.create_form.custom.widget.time_out}}</td>
+    </tr>
+    <tr>
+        <td>Time In:</td><td>{{=grid.create_form.custom.widget.time_in}}</td>
+    </tr>
+    <tr>
+        <td>Remarks:</td><td>{{=grid.create_form.custom.widget.remarks}}</td>
+    </tr>
+</table>
+
+{{=grid.create_form.custom.submit}}
+{{=grid.create_form.custom.end}}
+{{else:}}
+{{=grid}}
+{{pass}}

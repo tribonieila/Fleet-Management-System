@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+
+<a class="btn btn-primary btn-mini" href="{{=URL('event',args=r.id)}}" data-toggle="modal"
+ data-target="#eventModal">{{=T("View details")}} &raquo;</a>
+
+
+
+<script type="text/javascript">
+  $("a[data-toggle=modal]").click(function (e) {
+    target = $(this).attr('data-target')
+    url = $(this).attr('href')
+    $(target).load(url);
+  })
+</script>
+
+<div id="eventModal" class="modal hide fade">
+</div> <!-- /modal -->

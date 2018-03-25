@@ -1,0 +1,67 @@
+/* ================================================================ 
+This copyright notice must be untouched at all times.
+The original version of this stylesheet and the associated (x)html
+is available at http://www.cssplay.co.uk/menu/clickgallery.html
+Copyright (c) 2005-2009 Stu Nicholls. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any 
+way to fit your requirements.
+=================================================================== */
+
+#gallery {
+	width:640px;
+	/*height:750px;*/
+	height:450px;
+	margin:0 auto;
+	position:relative;
+}
+
+ul#thumbnails {
+	padding:0 0 0 10px;
+	margin:0;
+	list-style:none;
+}
+
+ul#thumbnails  li {
+	float:left;
+	position:relative; 
+	/*top:670px;*/
+	top:370px;
+}
+
+ul#thumbnails li a {
+	height:50px;
+	width:50px;
+	padding:3px;
+	display:block;
+	text-decoration:none;
+	background:#fff;
+}
+
+ul#thumbnails li a img {width:50px; height:50px; border:0;}
+
+ul#thumbnails li a:hover {
+	background:#fc0;
+}
+
+ul#thumbnails li.close a:hover {
+	background:#fff;
+}
+
+#gallery #fullsize {
+	position:absolute;
+	left:0;
+	top:0;
+	/*height:640px;*/
+	height:240px;
+	height:340px;
+	width:640px;
+	overflow:hidden;
+}
+
+#gallery #fullsize div {width:640px; /*height:840px;*/ height:540px; padding-top:25px;}
+
+#gallery #fullsize div b {display:block; width:640px; text-align:center;}
+
+#gallery #fullsize div img {display:block; margin:0 auto; border:0;}
+
+.description {font-size:15px;font-style:italic;}

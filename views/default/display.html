@@ -1,0 +1,23 @@
+{{extend 'layout.html'}}
+<h1>This is the houses/display.html template</h1>
+{{=BEAUTIFY(response._vars)}}
+{{ for x in people: }}
+Show Addresses for: {{=A(x.name, _href=URL('showHouses?id=' + str(x.id)))}}
+{{=BR()}}
+{{ pass }}
+ 
+---- end houses/display.html
+---- start houses/saveAddress.html
+{{=BEAUTIFY(response._vars)}}
+---- end houses/saveAddress.html
+---- start houses/showHouses.html
+{{extend 'layout.html'}}
+<h1> Showing houses for person #{{=request.vars.id}}</h1>
+ 
+<div id="houseListing"></div>
+<div id="input"><input type="text" name="address"/><input type="hidden" name="owner" value="{{=request.vars.id}}" />
+    <button onclick="ajax('saveAddress', ['address', 'owner'], 'houseListing')"> Web2PY save </button>
+</div>
+<script>
+ajax('saveAddress',['owner'],'houseListing');
+</script>

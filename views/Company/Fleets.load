@@ -1,0 +1,60 @@
+
+<div class="page-header">
+    <h1>Company Fleet<small><i class="ace-icon fa fa-angle-double-right"></i> a list of company fleet.</small></h1>
+</div>
+<div class="flash">{{=response.flash or ''}}</div>
+<div class="hr hr8 hr-single hr-dotted"></div>
+
+
+<div class="table-header">Results for "Latest Company Fleet"</div>
+{{=table}}
+Legend: * 
+<a><span class="fa fa-flag green bigger-30"></span></a> - <small>Good Fleet Status</small> *
+<a><span class="fa fa-flag orange bigger-30"></span></a> - <small>Expired Reg.No.</small> *
+<a><span class="fa fa-flag blue bigger-30"></span></a> - <small>Expired Fleet Insurance</small> *
+<a><span class="fa fa-flag red bigger-30"></span></a> - <small>Cancelled Fleet</small>
+
+
+<script>
+$(document).ready(function() {
+    var myTable = $('table.table')
+    
+    .DataTable( {
+        bAutoWidth: false,
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        
+    });
+ 
+
+
+                
+    new $.fn.dataTable.Buttons( myTable, {
+        buttons: [
+
+          {
+            "extend": "excel",
+            "exportOptions": {
+                    columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] },          
+            "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> Export to Excel",
+            "titleAttr": " Export to Excel",
+            "className": "btn btn-link"
+          }  
+        ]
+    } );
+    myTable.buttons().container().appendTo( '#' + myTable.table().container().id + ' .col-sm-6:eq(0)' ); 
+} );
+</script>                
+<style>
+.dataTables_length, .dt-buttons {
+  float: left;
+  margin-right: 10px;    
+}
+</style>
+
+
+
+

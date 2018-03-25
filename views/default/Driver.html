@@ -1,0 +1,95 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Driver<small><i class="ace-icon fa fa-angle-double-right"></i> Fleet driver's list </small></h1>
+</div>
+<div class="flash">{{=response.flash or ''}}</div>
+<div class="hr hr8 hr-single hr-dotted"></div>
+<div class="table-header">Results for "Latest Fleet Drivers"</div>
+{{=table}}
+
+
+
+<!-- ace scripts -->
+<link rel="stylesheet" href="{{=URL('static','css/ace/colorbox.min.css')}}" />
+<script src="{{=URL('static','js/ace/jquery.colorbox.min.js')}}"></script>
+
+
+<script type="text/javascript">
+    jQuery(function($) {
+        var $overflow = '';
+        var colorbox_params = {
+            rel: 'colorbox',
+            reposition:true,
+            scalePhotos:true,
+            scrolling:false,
+            close:'&times;',
+            maxWidth:'100%',
+            maxHeight:'100%',
+            trapFocus:  false,
+            rel:     'nofollow', 
+            onOpen:function(){
+                $overflow = document.body.style.overflow;
+                document.body.style.overflow = 'hidden';
+            },
+            onClosed:function(){
+                document.body.style.overflow = $overflow;
+            },
+            onComplete:function(){
+                $.colorbox.resize();
+            }
+    };
+
+    $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+    $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
+    
+    
+    $(document).one('ajaxloadstart.page', function(e) {
+        $('#colorbox, #cboxOverlay').remove();
+
+   });
+})
+</script>
+<script>
+$(document).ready(function() {
+    var myTable = $('table.table')
+    
+    .DataTable( {
+        bAutoWidth: false,
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 2, 'asc' ]],
+    });
+                
+    new $.fn.dataTable.Buttons( myTable, {
+        buttons: [
+
+          {
+            "extend": "excel",
+            "exportOptions": {
+                    columns: [ 0, 1, 2, 3, 4, 5 ] },           
+            "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> Export to Excel",
+            "titleAttr": " Export to Excel",
+            "className": "btn btn-link"
+          }  
+        ]
+    } );
+
+    myTable.on('order.dt search.dt', function () {
+        myTable.table(this).column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i+1;
+        });
+    }).draw();
+        
+    myTable.buttons().container().appendTo( '#' + myTable.table().container().id + ' .col-sm-6:eq(0)' ); 
+} );
+</script>                
+<style>
+.dataTables_length, .dt-buttons {
+  float: left;
+  margin-right: 10px;    
+}
+
+</style>

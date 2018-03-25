@@ -1,0 +1,51 @@
+{{extend 'layout.html'}}
+ 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="header-icon">
+                <span class="glyphicon glyphicon-dashboard"></span>
+            </div>
+            <div class="header-title">
+                <h3>Fuel Maintenance</h3>
+                <small>
+                    View list of vehicles fuel expenses.
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Vehicle Info.</h3>
+  </div>
+  <div class="panel-body">
+    {{=LOAD('default', 'CompanyInfo.load', content='Now loading...', args = request.args(0))}}
+  </div>
+</div>
+
+	{{=table}}
+
+<script>
+$(document).ready(function() {
+    $('#table').DataTable();
+});
+</script>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Fuel Expenses</h4>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>                
+

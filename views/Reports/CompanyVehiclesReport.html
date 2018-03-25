@@ -1,0 +1,82 @@
+{{extend 'layout.html'}}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="header-icon">
+                <span class="glyphicon glyphicon-print"></span>
+            </div>
+            <div class="header-title">
+                <h3>Vehicles Report</h3>
+                <small>
+                    A vehicles report.
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#road_per" aria-controls="road_per" role="tab" data-toggle="tab">Company</a></li>
+    <li role="presentation"><a href="#ins_pol" aria-controls="ins_pol" role="tab" data-toggle="tab">Division</a></li>
+    <li role="presentation" ><a href="#dri_lic" aria-controls="dri_lic" role="tab" data-toggle="tab">Department</a></li>    
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="road_per">
+        <div class="panel-body">
+            
+        </div>      
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ins_pol">
+        <div class="panel-body">
+            {{=LOAD('Reports', 'DivisionVehiclesReport.load')}}
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="dri_lic">
+        <div class="panel-body">
+            {{=LOAD('Reports', 'DepartmentVehiclesReport.load')}}
+        </div>
+    </div>   
+  </div>
+</div>
+
+<h1 align="center">Company Vehicles Report</h1>
+{{=form}}
+    {{if img_report:}}
+    {{=img_report}}
+    {{pass}}
+</BR>
+
+<div id="target_warpper">
+    <div id="target">    
+		{{=table}} 
+	</div>
+</div>
+
+<script type="text/javascript">
+    function PrintContent() 
+        {
+            var DocumentContainer = document.getElementById('target_warpper');
+            var WindowObject = window.open('', 'PrintWindow', 'width = 1100,height=700,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes');
+
+            WindowObject.document.writeln('<!DOCTYPE html>');
+            WindowObject.document.writeln('<html><head><title>Vehicle Management System Report</title>');
+            WindowObject.document.writeln('<link rel="stylesheet" type="text/css" href="{{=URL("static", "css/tablereport.css")}}">');
+            WindowObject.document.writeln('</head><body style = "font-size:70%;font-family: Tahoma, Arial, serif; margin:10px;width:98%;height:100%;">')
+            WindowObject.document.writeln('<h1 align = center>Darwish Group</h1>')
+            WindowObject.document.writeln('<h2 align = center>Vehicle Management System</h2>')
+            WindowObject.document.writeln('<h3 align = center>Company Vehicles Report</h3>')
+
+            WindowObject.document.writeln(DocumentContainer.innerHTML);
+
+            WindowObject.document.writeln('</body></html>');
+
+            WindowObject.document.close();
+            WindowObject.focus();
+            WindowObject.print();
+            WindowObject.close();
+        }
+</script>

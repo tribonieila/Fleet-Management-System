@@ -1,0 +1,199 @@
+{{extend 'layout.html'}}
+<style>
+p, h1, , button{border:0; margin:0; padding:0;}
+.spacer{clear:both; height:1px;}
+/* ----------- My grid ----------- */
+.myform{
+margin:0 auto;
+width:100%;
+
+
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+
+padding:14px;
+}
+h1 {
+font-size:30px;
+font-weight:bold;
+
+}
+.tablehead {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 20px;
+    color: #FFF;
+
+background: -moz-linear-gradient(left,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 80%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.65)), color-stop(80%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+
+}
+#stylized p{
+font-size:11px;
+color: #FFF;
+
+
+
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+}
+#stylized .small{
+color:#000;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+
+#titlehead{
+    color:black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+        padding-left: 20px;
+}
+#subtitle{
+    background-color: #000;
+        padding-left: 40px;
+        font-style: italic;
+         
+}
+</style>
+<div id="stylized">
+{{=grid.custom.begin}}
+    <table  class="myform" width="100%">
+        <tr><td colspan="4" id="titlehead"><h1>Company Vehicle Form</h1></td></tr>
+        <tr><td colspan="4" id="subtitle"><p>This is the entry of the company vehicle profile form.</p> </td></tr>
+        <tr><td colspan="4" class="tablehead">Company Info</td></tr>
+        <tr>
+            <td><label>Group:</label><span class="small">Add the Group/Division name</span></td>
+            <td>{{=grid.custom.widget.group_id}}</td>            
+            <td><label>Company/Division:</label><span class ="small">Add the company name</span></td>
+            <td>{{=grid.custom.widget.company_id}}</td>
+        </tr>
+        <tr>
+            <td><label>Department:</label><span class="small">Add the department name</span></td>
+            <td>{{=grid.custom.widget.department}}</td>
+            <td><label>Owner:</label><span class="small">Add the owner name</span></td>
+            <td>{{=grid.custom.widget.owner}}</td>
+        </tr>
+        <tr>
+            <td><label>Division:</label><span class="small">Add the division name</span></td>
+            <td>{{=grid.custom.widget.division_id}}</td>
+        </tr>
+        
+        <tr><td colspan="4" class="tablehead">Vehicle Info</td></tr>
+        <tr>
+            <td><label>Vehicle Code:</label><span class="small">Add vehicle code</span></td>
+            <td>{{=grid.custom.widget.vehicle_code}}</td>
+            <td><label>Reg.No.:</label><span class="small">Add registration number</span></td>
+            <td>{{=grid.custom.widget.reg_no}}</td>
+        </tr>
+        <tr>
+            <td><label>Vehicle Name:</label><span class="small">Add vehicle name</span></td>
+            <td>{{=grid.custom.widget.vehicle_name_id}}</td>
+            <td><label>Model:</label><span class="small">Add model</span></td>
+            <td>{{=grid.custom.widget.model}}</td>          
+        </tr>
+        <tr>
+
+            <td><label>Chassis No.:</label><span class="small">Add chassis no.</span></td>
+            <td>{{=grid.custom.widget.chassis_no}}</td>
+            <td><label>Mileage:</label><span class="small">Add mileage</span></td>
+            <td>{{=grid.custom.widget.mileage}}</td>            
+        </tr>
+        <tr>
+            <td><label>Car Type:</label><span class="small">Add car type.</span></td>
+            <td>{{=grid.custom.widget.car_type}}</td>
+            <td><label>Cylinder Count:</label><span class="small">Add cylinder count.</span></td>
+            <td>{{=grid.custom.widget.cylinder_count}}</td>
+
+        <tr>
+            <td><label>Transmission:</label><span class="small">Add transmission.</span></td>
+            <td>{{=grid.custom.widget.transmission}}</td>
+            <td><label>Tyre Size:</label><span class="small">Add tyre size.</span></td>
+            <td>{{=grid.custom.widget.tyre_size}}</td>            
+        </tr>            
+        </tr>
+        <tr><td colspan="4" class="tablehead">Date & Value Info</td></tr>
+        <tr>
+            <td><label>Invoice No.:</label><span class="small">Add invoice number</span></td>
+            <td>{{=grid.custom.widget.invoice}}</td>            
+            <td><label>Expiration Date:</label><span class="small">Add expiration date.</span></td>
+            <td>{{=grid.custom.widget.exp_date}}</td>
+        </tr>
+        <tr>
+            <td><label>1st Registration Date:</label><span class="small">Add registration date.</span></td>
+            <td>{{=grid.custom.widget.reg_date}}</td>
+            <td><label>Value Purchase:</label><span class="small">Add value purchase.</span></td>
+            <td>{{=grid.custom.widget.value_purchase}}</td>
+        </tr>
+        <tr>
+            <td><label>Date of sale:</label><span class="small">Add date of sale.</span></td>
+            <td>{{=grid.custom.widget.date_of_sale}}</td>
+            <td><label>Depreciation value:</label><span class="small">Add depreciation value</span></td>
+            <td>{{=grid.custom.widget.depreciation_value}}</td>
+        </tr>
+        <tr><td colspan="4" class="tablehead">Other's Info</td></tr>
+        <tr>
+            <td><label>Plate Type:</label><span class="small">Add plate type.</span></td>
+            <td>{{=grid.custom.widget.plate_type}}</td>
+            <td><label>Ext. Color Code:</label><span class="small">Add ext. color code.</span></td>
+            <td>{{=grid.custom.widget.ext_color_code}}</td>
+        </tr>
+        <tr>
+            <td><label>Accessories:</label><span class="small">Add accessories.</span></td>
+            <td>{{=grid.custom.widget.accessories}}</td>
+            <td><label>Category:</label><span class="small">Add category</span></td>
+            <td>{{=grid.custom.widget.category_id}}</td>
+        </tr>
+        <tr>
+            <td><label>Purpose:</label><span class="small">Add purpose here.</span></td>
+            <td>{{=grid.custom.widget.purpose}}</td>
+            <td><label>Status:</label><span class="small">Add status here.</span></td>
+            <td>{{=grid.custom.widget.status_id}}</td>
+        </tr>
+        <tr>
+            <td><label>Remarks:</label><span class="small">Add remarks here.</span></td>
+            <td>{{=grid.custom.widget.remarks}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr><td colspan="4" class="tablehead">Photo's</td></tr>
+        <tr>
+            <td><label>Road Permit:</label><span class="small">Add road permit here.</td>
+            <td>{{=grid.custom.widget.road_permit}}</td>
+            <td><label>Front Photo:</label><span class="small">Add front photo here.</span></td>
+            <td>{{=grid.custom.widget.photo}}</td>           
+        </tr>
+        <tr>
+            <td><label>Rear Photo:</label><span class="small">Add rear photo here.</span></td>
+            <td>{{=grid.custom.widget.photo2}}</td>             
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{=grid.custom.submit}}</td>   
+            <td>{{=grid.custom.end}}</td>
+            <td></td>
+        </tr>
+
+    </table>
+</div>    
+{{pass}}
+

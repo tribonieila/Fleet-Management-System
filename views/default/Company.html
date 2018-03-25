@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+
+{{=table}}
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#company-table').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'pdf'
+        ]
+    } );
+} );
+</script>
+
+
+

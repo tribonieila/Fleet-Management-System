@@ -1,0 +1,39 @@
+
+{{=table}}
+
+<script>
+$(document).ready(function() {
+    var myTable = $('table.table')
+    
+    .DataTable( {
+        bAutoWidth: false,
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false
+        } ],
+        "order": [[ 2, 'desc' ]],
+    });
+				
+	new $.fn.dataTable.Buttons( myTable, {
+		buttons: [
+
+		  {
+			"extend": "excel",
+			"exportOptions": {
+                    columns: [ 0, 1, 2 ] },			
+            "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> Export to Excel",
+            "titleAttr": " Export to Excel",
+            "className": "btn btn-link"
+		  }  
+		]
+	} );
+	myTable.buttons().container().appendTo( '#' + myTable.table().container().id + ' .col-sm-6:eq(0)' ); 
+} );
+</script>                
+<style>
+.dataTables_length, .dt-buttons {
+  float: left;
+  margin-right: 10px;    
+}
+
+</style>

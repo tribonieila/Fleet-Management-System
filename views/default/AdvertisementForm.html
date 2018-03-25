@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Fleet Advertisement Form<small><i class="ace-icon fa fa-angle-double-right"></i> Data entry for the fleet advertisement.</small></h1>
+</div>
+<div class="flash">{{=response.flash or ''}}</div>
+
+<div class="hr hr8 hr-single hr-dotted"></div>
+
+
+<div class="tabbable">
+    <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+        <li class="active">
+            <a data-toggle="tab" href="#lic_no" aria-expanded="true">License No</a>
+        </li>
+
+        <li class="">
+            <a data-toggle="tab" href="#fleet_ads" aria-expanded="false">Fleet Ads</a>
+        </li>
+
+    </ul>
+
+    <div class="tab-content">
+        <div id="lic_no" class="tab-pane active">
+            {{=LOAD('default','AdvertisementForm_.load', ajax = True)}}
+        </div>
+
+        <div id="fleet_ads" class="tab-pane">
+            {{=LOAD('default','AdsVehiclesForm_.load',ajax = True)}}
+        </div>
+    </div>
+</div>

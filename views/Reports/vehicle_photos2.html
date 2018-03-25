@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+<script src="{{=URL('static','js/jquery.multiupload.js')}}"></script>
+<h3>Registration #:{{=reg}}</h3>
+
+<div id="gallery_container">
+
+<div id="gallery">
+	<ul id="thumbnails">
+		{{for li in LIitems:}}
+		{{=XML(li)}}
+		{{pass}}
+	</ul>
+	<div id="fullsize">
+		{{for div in DIVitems:}}
+		{{=XML(div)}}
+		{{pass}}
+	</div>
+</div>
+</div> <!-- end of gallery_container -->

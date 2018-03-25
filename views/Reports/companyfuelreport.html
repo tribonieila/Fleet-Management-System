@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+<h3>Darwish Trading Company</h3>
+<h4>Company Fuel Expenses Report</h4>
+{{=form}}
+{{=A(SPAN(_class = 'icon plus'),'Print', _title='Pdf report',_href=URL("reports","companyfuelreport.pdf"))}}
+{{=query}}
+  
+<table>
+    <tr>
+        <td><h4>Total Amount:</h4></td>
+        <td><h4>{{=XML(total_amount)}}</h4></td>
+    </tr>
+    
+</table>

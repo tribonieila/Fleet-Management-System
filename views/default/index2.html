@@ -1,0 +1,57 @@
+{{extend 'layout.html'}}
+<style>
+
+
+/*.table > tbody > tr.cancelled > td */
+.cancelled 
+{  
+    border-left: 3px solid #f6a821;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: rgb(217, 83, 79); 
+
+}
+.road
+{  
+    border-left: 3px solid #f6a821;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: rgb(240, 173, 78); }
+
+.insurance
+{  
+    
+    border-left: 3px solid #f6a821;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: rgb(91, 192, 222); 
+}
+</style>
+
+<!--
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="header-icon">
+                <span class="glyphicon glyphicon-home"></span>
+            </div>
+            <div class="header-title">
+                <h3>Home</h3>
+                <small>
+                    View list of vehicles.
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+-->
+
+{{=table}}
+<script>
+$(document).ready(function() {
+    $('#table').DataTable();
+});
+</script>
+
+                            

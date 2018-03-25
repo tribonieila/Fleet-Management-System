@@ -1,0 +1,168 @@
+    <div class="row">
+        <div class="space-6"></div>
+
+        <div class="col-sm-7 infobox-container">
+
+            <div class="infobox infobox-green">
+                
+                <div class="infobox-icon">
+                    <a class="ace-icon fa fa-car" href="{{=URL('default','Browse', args=3, extension=False)}}" style="text-decoration:none;"></a>
+                </div>
+
+                <div class="infobox-data">
+                    <span class="infobox-data-number">{{=active}}</span>
+                    <div class="infobox-content">Running</div>
+                </div>
+
+                <div class="stat stat-important">{{=locale.format('%.2F', act_per or 0, grouping = True)}}%</div>
+                
+            </div>
+
+            <div class="infobox infobox-orange">
+                <div class="infobox-icon">
+                    <a class="ace-icon fa fa-car" href="{{=URL('default','Browse', args=2, extension=False)}}" style="text-decoration:none;"></a>
+                </div>
+
+                <div class="infobox-data">
+                    <span class="infobox-data-number">{{=non_active}}</span>
+                    <div class="infobox-content">Non-Running</div>
+                </div>
+
+                <div class="stat stat-success">{{=locale.format('%.2F', non_per or 0, grouping = True)}}%</div>
+            </div>
+
+            <div class="infobox infobox-red">
+                <div class="infobox-icon">
+                    <a class="ace-icon fa fa-car" href="{{=URL('default','Browse', args=1, extension=False)}}" style="text-decoration:none;"></a>
+                </div>
+
+                <div class="infobox-data">
+                    <span class="infobox-data-number">{{=cancelled}}</span>
+                    <div class="infobox-content">Cancelled</div>
+                </div>
+
+                <div class="stat stat-success">{{=locale.format('%.2F', can_per or 0, grouping = True)}}%</div>
+            </div>
+
+
+            <div class="infobox infobox-blue">
+                <div class="infobox-icon">
+                    <a class="ace-icon fa fa-hourglass-end" href="{{=URL('default','Browse', args=4, extension=False)}}" style="text-decoration:none;">></a>
+                </div>
+
+                <div class="infobox-data">
+                    <span class="infobox-data-number">{{=expired_reg_no}}</span>
+                    <div class="infobox-content">Expired Reg.No.</div>
+                </div>
+            </div>
+
+            <div class="infobox infobox-orange2">
+                <div class="infobox-icon">
+                    <i class="ace-icon fa fa-credit-card"></i>
+                </div>
+
+                <div class="infobox-data">
+                    <span class="infobox-data-number">{{=expired_lic_no}}</span>
+                    <div class="infobox-content">Exp. License. Driver</div>
+                </div>
+
+            </div>
+
+            <div class="infobox infobox-blue2">
+                <div class="infobox-icon">
+                    <i class="ace-icon fa fa-heartbeat"></i>
+                </div>
+
+                <div class="infobox-data">
+                    <span class="infobox-text">Expired Insurance</span>
+
+                    <div class="infobox-content">
+                        <span class="bigger-110">~</span>
+                        {{=expired_ins}} Insurance Policy
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-6"></div>
+
+  
+
+
+            
+        </div>
+
+        <div class="vspace-12-sm"></div>
+    
+        <div class="col-sm-5">
+            <div class="infobox infobox-green infobox-small infobox-dark">
+                <div class="infobox-icon">
+                    <i class="ace-icon fa fa-users"></i>
+                </div>
+
+                <div class="infobox-data">
+                    <span class="infobox-data-number">{{=db(db.auth_membership.group_id == 3).count()}}</span>
+                    <div class="infobox-content">Controller</div>
+                </div>
+            </div>
+
+            <div class="infobox infobox-blue infobox-small infobox-dark">
+                <div class="infobox-icon">
+                    <i class="ace-icon fa fa-user-secret"></i>
+                </div>
+
+                <div class="infobox-data">
+                    <span class="infobox-data-number">{{=db(db.auth_membership.group_id == 2).count()}}</span>
+                    <div class="infobox-content">Supervisor</div>
+                </div>
+            </div>
+
+            <div class="infobox infobox-grey infobox-small infobox-dark">
+                <div class="infobox-icon">
+                    <i class="ace-icon fa fa-user-times"></i>
+                </div>
+
+                <div class="infobox-data">
+                    <div class="infobox-content">Limited</div>
+                    <div class="infobox-content">~ {{=db(db.auth_membership.group_id == 4).count()}}</div>
+                </div>
+            </div>
+        </div><!-- /.col -->
+
+    </div><!-- /.row -->
+
+
+<script type="text/javascript">
+$(function () {
+    // Build line stats
+    $('#linechart_div').highcharts({
+        title: {
+            text: 'Annual Maintenance Expenses',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: [{{for y in lin_yer:}}{{=y[db.repair_history.invoice_date.year()]}},{{pass}}]
+        },
+        yAxis: {
+            title: {
+                text: 'Amount Expenses'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [ {{for c in lin_com:}}
+        {
+            name: '{{=c.company}}',
+            data: [{{for r in db(fil_dat & (c.id == db.company.id)).select(db.repair_history.invoice_date.year(), db.repair_history.total_amount.sum().coalesce_zero(), orderby=db.repair_history.invoice_date.year(), groupby=db.repair_history.invoice_date.year(),left=db.repair_history.on(db.vehicle.id==db.repair_history.reg_no_id)):}}{{=locale.format('%.2F',r[db.repair_history.total_amount.sum().coalesce_zero()])}},{{pass}}]
+        },{{pass}}]
+    });    
+});
+</script>

@@ -1,0 +1,62 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Repair & Maintenance Report<small><i class="ace-icon fa fa-angle-double-right"></i> a fleet report for repair and maintenance.</small></h1>
+</div>
+<div class="flash">{{=response.flash or ''}}</div>
+<div class="hr hr8 hr-single hr-dotted"></div>
+<div class="widget-box">
+    <div class="widget-header">
+        <h4 class="widget-title">Summary</h4>
+        <span class="widget-toolbar">
+            <a href="#" data-action="collapse">
+                <i class="ace-icon fa fa-chevron-up"></i>
+            </a>
+        </span>
+    </div>    
+    <div class="widget-body">
+        <div class="widget-main">
+            {{=form}}
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin: 35px; padding-top:30px; padding-bottom:30px">
+    <div class="col-sm-10 col-sm-offset-1">
+        {{=table}} 
+    </div>
+</div>
+
+
+<style>
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+    padding:5px;
+}
+
+.btmborder {
+  padding:5px;
+  border-bottom: 1px solid #CCCCCC; 
+}
+
+.tblhead {
+  padding:5px;
+  background-color: #CCCCCC;
+}
+
+.lftborder {
+  padding:5px;
+  border-left: 1px solid #CCCCCC;
+}
+
+.rtborder {
+  padding:5px;
+  border-right: 1px solid #CCCCCC;
+
+}
+
+.topborder {
+  padding:5px;
+  border-top: 1px solid #CCCCCC;
+
+}
+</style>

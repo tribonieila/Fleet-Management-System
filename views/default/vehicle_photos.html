@@ -1,0 +1,65 @@
+<style type="text/css">
+.container {
+    width: 940px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+}    
+
+.tab{
+	margin:0 auto;
+	width:796.8px;
+	font-family:Arial;
+	width: 940px;
+
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+
+
+}
+</style>
+<div class = 'tab'>
+<table width = '100%'>
+    <tr><td colspan="4" align = 'center'><h1>Darwish Group</h1></td></tr>
+    <tr><td colspan="4" align = 'center'><h2>Vehicle Management System</h2></td></tr>
+    <tr><td colspan="4" align = 'center'><h3>Vehicle & Road Permit Photo</h3> </td></tr>
+</table>
+
+</style>
+<div class="container">
+  
+
+  <table width = '100%'>
+    <tr><td>Reg.No.:</td><td>{{=info.reg_no}}</td></tr>
+    <tr><td>Company:</td><td>{{=info.company_id.company}}</td></tr>
+    <tr><td>Chassis No.:</td><td>{{=info.chassis_no}}</td></tr>
+    <tr><td>Mileage:</td><td>{{=info.mileage}}</td></tr>
+    <tr><td>Model:</td><td>{{=info.model}}</td></tr>
+  </table>
+
+  {{for image in images:}}
+  <table width="796.8" border="0" align = 'center' style=font-family:Arial>
+    <tr>
+      <th width="796.8">ROAD PERMIT:</th>
+    </tr>
+    <tr>
+      <td><img src="{{=URL('default', 'download', args=image.road_permit)}}", align = 'center', width = '900px', height = '300px' /></td>
+    </tr>
+  </table>
+
+
+  <table width="796.8" border="0" align = 'center' style=font-family:Arial>
+    <tr>
+      <th width="398">FRONT PHOTO:</th>
+      <th width="398">REAR PHOTO</th>
+    </tr>
+    <tr>
+      <td><img src="{{=URL('default', 'download', args=image.photo)}}",align = 'center', width = '360', height = '240' /></td>
+      <td><img src="{{=URL('default', 'download', args=image.photo2)}}",align = 'center', width = '360', height = '240' /></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>{{pass}}
+</div>

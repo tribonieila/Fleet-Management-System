@@ -1,0 +1,240 @@
+
+<div class="row">
+
+	
+
+	<div class="vspace-12-sm"></div>
+	<div class="col-sm-5">
+		<div class="widget-box">
+			<div class="widget-header widget-header-flat widget-header-small">
+				<h5 class="widget-title"><i class="ace-icon fa fa-gear"></i>Current Expenses</h5>
+                
+				<div class="widget-toolbar no-border"><a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a>
+
+				</div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main">
+					<div class="infobox infobox-orange infobox-small infobox-dark">
+						<div class="infobox-icon">
+							<i class="ace-icon fa fa-wrench"></i>
+						</div>
+
+						<div class="infobox-data">
+							<div class="infobox-content">Maint.</div>
+							<div class="infobox-content">{{=locale.format('%.2f', main_exp or 0, grouping = True)}}</div>
+						</div>
+					</div>
+
+                    <div class="infobox infobox-blue2 infobox-small infobox-dark">
+                        <div class="infobox-icon">
+                            <i class="ace-icon fa fa-adjust"></i>
+                        </div>
+                        <div class="infobox-data">
+                            <div class="infobox-content">Statutory </div>
+                            <div class="infobox-content">{{=locale.format('%.2f', s_exp or 0, grouping = True)}}</div>
+                        </div>
+                    </div>
+
+					<div class="infobox infobox-green infobox-small infobox-dark">
+						<div class="infobox-icon">
+							<i class="ace-icon fa fa-filter"></i>
+						</div>
+						<div class="infobox-data">
+							<div class="infobox-content">Fuel </div>
+							<div class="infobox-content">{{=locale.format('%.2f', ful_exp or 0, grouping = True)}}</div>
+						</div>
+					</div>
+
+					<div class="infobox infobox-blue infobox-small infobox-dark">
+						<div class="infobox-icon">
+							<i class="ace-icon fa fa-heartbeat"></i>
+						</div>
+
+						<div class="infobox-data">
+							<div class="infobox-content">Insurance</div>
+							<div class="infobox-content">{{=locale.format('%.2f', ins_expenses or 0, grouping = True)}}</div>
+						</div>
+					</div>
+
+					<div class="infobox infobox-orange2 infobox-small infobox-dark">
+						<div class="infobox-icon">
+							<i class="ace-icon fa fa-buysellads"></i>
+						</div>
+
+						<div class="infobox-data">
+							<div class="infobox-content">Ads</div>
+							<div class="infobox-content">{{=locale.format('%.2f', ads_exp or 0, grouping = True)}}</div>
+						</div>
+					</div>
+					<div class="infobox infobox-red infobox-small infobox-dark">
+						<div class="infobox-icon">
+							<i class="ace-icon fa fa-money"></i>
+						</div>
+
+						<div class="infobox-data">
+							<div class="infobox-content">CGT Exp</div>
+							<div class="infobox-content">{{=locale.format('%.2f',cur_tot or 0, grouping = True)}}</div>
+						</div>
+					</div>
+					<div class="infobox infobox-pink infobox-small infobox-dark">
+						<div class="infobox-icon">
+							<i class="ace-icon fa fa-industry"></i>
+						</div>
+
+						<div class="infobox-data">
+							<div class="infobox-content">Cost/Run</div>
+							<div class="infobox-content">{{=locale.format('%.2f', cos_run or 0, grouping = True)}}</div>
+						</div>
+					</div>				
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+
+		</div><!-- /.widget-box -->
+
+	</div>
+
+</div>
+<div class="hr hr32 hr-dotted"></div>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="widget-box transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter"><i class="ace-icon fa fa-bar-chart orange"></i>Maintenance Statistics</h4>
+				<div class="widget-toolbar"><a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a></div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<div id="rep_container"></div>
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div><!-- /.widget-box -->
+	</div><!-- /.col -->
+
+	<div class="col-sm-6">
+		<div class="widget-box transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter"><i class="ace-icon fa fa-bar-chart green"></i>Fuel Statistics</h4>
+				<div class="widget-toolbar"><a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a></div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main padding-4">
+					<div id="container"></div>
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div><!-- /.widget-box -->
+	</div><!-- /.col -->
+</div>
+
+
+{{import calendar}}
+
+
+<script>
+$(function () {
+    $('#container').highcharts({
+    	chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Monthly Fuel Expenses',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: [{{for m in ful_que:}}'{{=calendar.month_name[m[db.fuel_expenses.date_expense.month()]]}}',{{pass}}]
+        },
+        yAxis: {
+            title: {
+                text: 'Amount'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Fuel', 
+            color: '#69AA46', 
+            data: [{{for a in ful_que:}}{{=a[db.fuel_expenses.amount.sum().coalesce_zero()]}},{{pass}}]
+        }]
+    });
+
+    $('#rep_container').highcharts({
+    	chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Monthly Maintenance Expenses',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: [{{for m in rep_que:}}'{{=calendar.month_name[m[db.repair_history.invoice_date.month()]]}}',{{pass}}]
+        },
+        yAxis: {
+            title: {
+                text: 'Amount'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Maintenance',
+            color: '#FF892A', 
+            data: [{{for a in rep_que:}}{{=a[db.repair_history.total_amount.sum().coalesce_zero()]}},{{pass}}]
+        }]
+    });
+    $('#mil_container').highcharts({
+    	chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Monthly Average Mileage',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: [{{for m in mil_que:}}'{{=calendar.month_name[m[db.km_used.given_month.month()]]}}',{{pass}}]
+        },
+        yAxis: {
+            title: {
+                text: 'Mileage'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Mileage',
+            color: '#DD5A43', 
+            data: []
+        }]
+    });
+});
+
+</script>

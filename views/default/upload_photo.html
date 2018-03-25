@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+<script src="{{=URL('static','js/jquery.multiupload.js')}}"></script>
+<div>
+{{=form}}
+<script type="text/javascript" charset="utf-8">
+
+jQuery('input[name="photo"]:not(.processed)').multiUpload({
+mw_placeholder:"{{=T('upload files')}}",
+mw_text_addBtn:"+",
+mw_tooltip_addBtn:"{{=T('add a file')}}",
+mw_text_clearBtn:"x",
+mw_tooltip_clearBtn:"{{=T('remove all')}}",
+mw_tooltip_removeFileBtn:"{{=T('remove this file')}}",
+mw_tooltip_removeGroupBtn:"{{=T('remove this file group')}}",
+mw_group_title:"{{=T('FILE GROUP')}}",
+mw_fileNumber:false,mw_maxElementAllowed:5});
+
+</script>
+</div>

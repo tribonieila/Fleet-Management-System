@@ -1,0 +1,34 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Fleet Insurance Form<small><i class="ace-icon fa fa-angle-double-right"></i> Data entry for the fleet insurance expenses.</small></h1>
+</div>
+<div class="flash">{{=response.flash or ''}}</div>
+
+<div class="hr hr8 hr-single hr-dotted"></div>
+
+
+<div class="tabbable">
+    <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+        <li class="active">
+            <a data-toggle="tab" href="#ins_policy" aria-expanded="true">Insurance Policy</a>
+        </li>
+
+        <li class="">
+            <a data-toggle="tab" href="#ins_fleet" aria-expanded="false">Insured Fleet</a>
+        </li>
+
+    </ul>
+
+    <div class="tab-content">
+        <div id="ins_policy" class="tab-pane active">
+            {{=LOAD('default','InsurancePolicyForm.load', ajax = True)}}
+        </div>
+
+        <div id="ins_fleet" class="tab-pane">
+            {{=LOAD('default', 'InsuredVehiclesForm.load', ajax = True)}}
+        </div>
+
+    </div>
+</div>
+
+

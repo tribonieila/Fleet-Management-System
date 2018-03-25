@@ -1,0 +1,60 @@
+{{extend 'layout.html'}}
+
+
+{{if img_report:}}
+    {{=img_report}}
+{{pass}}
+<button class="btn btn-default" onclick="pdf()">generate</button>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="header-icon">
+                <span class="glyphicon glyphicon-book"></span>
+            </div>
+            <div class="header-title">
+                <h3>Vehicle Profile Report</h3>
+                <small>
+                    Company vehicle profile report.
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+{{=c_info}}
+{{=v_info}}
+{{=dv_info}}
+{{=o_info}}
+{{=p}}
+
+
+<script>
+
+    function pdf() {    
+        var docDefinition = {
+          content: [
+            
+            {
+                {{for row in db(db.v_photos.reg_no_id == request.args(0)).select(db.v_photos.ALL):}}
+                    
+                    //var myImg = "{{=IMG(_src = URL('static','download', args=row.photo))}}"; // single quotes contain '<img ..../>'
+                        //image: '{{=URL("static","download", args=row.photo)}}',
+                        //width: 150
+                        //'data:image/png;base64,'+ this.getBase64Image("../imagenes/logoExportarPdf.png")
+                    //image: 'data:image/png;base64,/9j/{{=URL("static","download", args=row.photo)}}',
+                    image: 'data:image/jpeg;base64,{{=URL("static","download", args=row.photo)}}',
+                    width: 200                        
+                {{pass}}
+            }
+          ]
+        };
+
+    // open the PDF in a new window
+    pdfMake.createPdf(docDefinition).open();
+}
+</script>
+
+    <script type="text/javascript" charset="utf8" src="{{=URL('static', 'js/pdfmake.min.js')}}"></script>       
+    <script type="text/javascript" charset="utf8" src="{{=URL('static', 'js/vfs_fonts.js')}}"></script>  

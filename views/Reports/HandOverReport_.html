@@ -1,0 +1,52 @@
+<table width="100%" border="0">{{for h in HO_row:}} 
+    <tr><td colspan="2" align="center"><h2>Darswish Group Companies</h2></td></tr>
+    <tr><td colspan="2" align="center"><h3>Hand-Over Report</h3></td></tr>
+    <tr><td width="10%">Reg.No.:</td><td width="30%">{{=h.reg_no_id.reg_no}}</td></tr>
+    <tr><td width="10%">Date and Time:</td><td>{{=h.date_and_time}}</td></tr>
+    <tr><td width="10%">From Company:</td><td>{{=h.from_company_id.company}}</td></tr>
+    <tr><td width="10%">To Company:</td><td>{{=h.to_company_id.company}}</td></tr>
+    <tr><td width="10%">From Driver:</td><td>{{=h.from_driver_id.driver_name}}</td></tr>
+    <tr><td width="10%">To Driver:</td><td>{{=h.to_driver_id.driver_name}}</td></tr>
+    <tr><td width="10%">Mileage:</td><td>{{=h.mileage}}</td></tr>
+    <tr><td width="10%">Vehicles Accessories:</td><td>{{=h.vehicles_acc}}</td></tr>
+    <tr><td width="10%">Remarks:</td><td>{{=h.remarks}}</td></tr>       
+</table>{{pass}}
+<table width="100%" border="0">
+    <tr>
+        <th width="50%">Road Permit:</th>
+        <th width="50%">Front Photo:</th>
+        <th width="50%">Rear Photo:</th>
+    </tr>
+
+    <tr>
+        <td>{{for r in P_row:}}
+        <div><img src="{{=URL('default', 'download', args=r.road_permit)}}", width="400px" height="270" /></div>
+        </td>
+
+        <td>
+        <div><img src="{{=URL('default', 'download', args=r.photo)}}", width="400px" height="270"/><br /></div>
+        </td>
+        <td>
+        <div><img src="{{=URL('default', 'download', args=r.photo2)}}", width="400px" height="270"/><br /></div>
+        </td>{{pass}}
+
+    </tr>
+
+</table>
+</br>
+</br>
+
+<table width = "100%" border="0">
+    <tr>{{for s in HO_row:}}
+        <th width = "30%"><div align = "center">{{=s.from_driver_id.driver_name}}</div></th>
+        <th width = "30%"><div align="center">{{=s.to_driver_id.driver_name}}</div></th>
+        <th width = "30%" align="center"></th>
+    </tr>{{pass}}
+    <tr>
+        <td><div align = "center">From Driver Signature:</div></td>
+        <td><div align = "center">To Driver Signature</div></td>
+        <td><div align = "center">Checked and verified by</div></td>
+    </tr>
+</table>
+
+

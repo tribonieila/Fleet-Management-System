@@ -1,0 +1,72 @@
+<div class="widget-box transparent" id="recent-box">
+    <div class="widget-header">
+        <h4 class="widget-title lighter smaller">
+            <i class="ace-icon fa fa-rss orange"></i>RECENT
+        </h4>
+
+        <div class="widget-toolbar no-border">
+            <ul class="nav nav-tabs" id="recent-tab">
+                <li class="active"><a data-toggle="tab" href="#task-tab">Activities</a></li>
+                <li><a data-toggle="tab" href="#member-tab">Controllers</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="widget-body">
+        <div class="widget-main padding-4">
+            <div class="tab-content padding-8">
+                <div id="task-tab" class="tab-pane active">
+                    <h4 class="smaller lighter green"><i class="ace-icon fa fa-list"></i>Lists of Activities</h4>
+                    <table class='table'>
+                        <thead>
+                            <th>Focal Person</th><th>Activity Done</th><th>Log Date</th>
+                        </thead>{{for a in db().select(db.activities.person,db.activities.action,db.activities.log_date,  orderby=~db.activities.log_date, limitby=(0, 10)):}}
+                        <tr>
+                            <td>{{=a.person.upper()}}</td><td>{{=a.action}}</td><td>{{=a.log_date}}</td>
+                        </tr>{{pass}}
+                    </table>
+                </div>
+
+                <div id="member-tab" class="tab-pane">
+                    <div class="clearfix">
+                        {{for a in db((db.auth_user.id == db.auth_membership.user_id) & (db.auth_membership.group_id == 3) & (db.auth_user.division_id == db.division.id) & (db.division.company_id == db.company.id)).select(db.auth_user.ALL, db.division.ALL, db.company.ALL, orderby = db.auth_user.last_name):}}
+                        <div class="itemdiv memberdiv">
+                            <div class="body" style="margin-left:0px">
+                                <div class="name">{{=a.auth_user.last_name.upper()}}, <small>{{=a.auth_user.first_name.lower()}}</small></div>
+                                <div>{{if a.division.company_id == 54:}}
+                                        <span class="label label-warning label-sm arrowed-in">{{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 52:}}
+                                        <span class="label label-success label-sm">{{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 50:}}
+                                        <span class="label label-info label-sm">{{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 49:}}
+                                        <span class="label label-danger label-sm">{{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 48:}}
+                                        <span class="label label-active label-sm" style="background-color: #6BCAE2">{{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 47:}}
+                                        <span class="label label-active label-sm" style="background-color: #51A5BA">{{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 46:}}
+                                        <span class="label label-active label-sm" style="background-color: #41924B"> {{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 43:}}
+                                        <span class="label label-active label-sm" style="background-color: #AFEAAA">{{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 30:}}
+                                        <span class="label label-active label-sm" style="background-color: #87E293">{{=a.division.division}}</span>
+                                    {{elif a.division.company_id == 20:}}
+                                        <span class="label label-active label-sm" style="background-color: #9CAA9C">{{=a.division.division}}</span>
+                                    {{else:}}
+                                        <span class="label label-active label-sm">{{=a.division.division}}</span>
+                                    {{pass}}
+
+                                </div>
+                            </div>
+                        </div>
+                        {{pass}}
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="hr hr-double hr8"></div>
+                </div><!-- /.#member-tab -->
+            </div>
+        </div><!-- /.widget-main -->
+    </div><!-- /.widget-body -->
+</div><!-- /.widget-box -->
+

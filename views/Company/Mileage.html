@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+
+<div class="page-header">
+    <h1>Mileage<small><i class="ace-icon fa fa-angle-double-right"></i> a data access for the fleet mileage.</small></h1>
+</div>
+<div class="flash">{{=response.flash or ''}}</div>
+
+<div class="hr hr8 hr-single hr-dotted"></div>
+<button class="btn btn-white btn-info btn-bold" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="ace-icon fa fa-road bigger-120 blue"></i>new mileage</button>
+
+<div class='space-2'></div>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Mileage <small><i class="ace-icon fa fa-angle-double-right"></i> a data entry for the fleet mileage.</small></h4>
+      </div>
+      <div class="modal-body">
+        {{=LOAD('Company','MileageForm.load', ajax = True)}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{=LOAD('Company','MileageTable.load', ajax = True, target='tblM')}}

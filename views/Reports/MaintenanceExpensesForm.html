@@ -1,0 +1,125 @@
+{{extend 'layout.html'}}
+<style>
+p, h1, , button{border:0; margin:0; padding:0;}
+.spacer{clear:both; height:1px;}
+/* ----------- My grid ----------- */
+.myform{
+margin:0 auto;
+width:100%;
+
+
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+
+padding:14px;
+}
+h1 {
+font-size:30px;
+font-weight:bold;
+
+}
+.tablehead {
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	color: #FFF;
+
+background: -moz-linear-gradient(left,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 80%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.65)), color-stop(80%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+
+}
+#stylized p{
+font-size:11px;
+color: #FFF;
+
+
+
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+}
+#stylized .small{
+color:#000;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+
+#titlehead{
+	color:black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+        padding-left: 20px;
+}
+#subtitle{
+	background-color: #000;
+        padding-left: 40px;
+        font-style: italic;
+         
+}
+</style>
+<div id="stylized">
+
+{{=form.custom.begin}}
+    <table  class="myform" width="100%">
+        <tr><td colspan="4" id="titlehead"><h1>Maintenance Expenses Form</h1></td></tr>
+        <tr><td colspan="4" id="subtitle"><p>This is the entry of the company maintenance expenses form.</p> </td></tr>
+        <tr><td colspan="4" class="tablehead">Company Info</td></tr>
+        <tr>
+            <td><label>Reg.No.:</label><span class="small">Add the choose the reg.no.</span></td>
+            <td>{{=form.custom.widget.reg_no_id}}</td>            
+            <td><label>Invoice No.:</label><span class ="small">Add the invoice no.</span></td>
+            <td>{{=form.custom.widget.invoice_number}}</td>
+        </tr>
+        <tr>
+            <td><label>Date Invoice:</label><span class="small">Add the date invoice.</span></td>
+            <td>{{=form.custom.widget.invoice_date}}</td>
+            <td><label>Workshop Done:</label><span class="small">Add the workshop done.</span></td>
+            <td>{{=form.custom.widget.workshop_done}}</td>
+        </tr>
+        <tr><td colspan="4" class="tablehead">Vehicle Info</td></tr>
+        <tr>
+            <td><label>Mileage:</label><span class="small">Add mileage</span></td>
+            <td>{{=form.custom.widget.mileage}}</td>
+            <td><label>Labour:</label><span class="small">Add the labour cost here, if any.</span></td>
+            <td>{{=form.custom.widget.regular_maintenance}}</td>
+        </tr>
+        <tr>
+            <td><label>Spare Parts:</label><span class="small">Add the spare parts cost here, if any.</span></td>
+            <td>{{=form.custom.widget.spare_parts}}</td>
+            <td><label>Statutory Expenses:</label><span class="small">Add the statutory expenses here, if any.</span></td>
+            <td>{{=form.custom.widget.statutory_expenses}}</td>          
+        </tr>
+        <tr>
+
+            <td><label>Accident Repair:</label><span class="small">Add the accident repair expenses here, if any.</span></td>
+            <td>{{=form.custom.widget.accident_repair}}</td>
+            <td><label>Details:</label><span class="small">Add some details here.</span></td>
+            <td>{{=form.custom.widget.details}}</td>            
+        </tr>
+        <tr>
+	    <td></td>
+            <td>{{=form.custom.submit}}</td>   
+            <td>{{=form.custom.end}}</td>
+	    <td></td>
+        </tr>
+    </table>
+</div>    
+{{pass}}

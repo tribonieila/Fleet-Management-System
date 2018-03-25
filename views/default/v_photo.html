@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+<h3>Vehicle & Road Permit Photo</h3>
+{{for p in x:}}
+
+<div style="width:200px; height:200px; max-width:200px; overflow:hidden;">
+<img src="{{=URL('uploads', args = p.photo)}}" />
+</div>
+{{pass}}

@@ -1,0 +1,88 @@
+{{extend 'layout.html'}} 
+<div class="page-header">
+    <h1>Fleet Maintenance Report<small><i class="ace-icon fa fa-angle-double-right"></i> a summary report for fleet.</small></h1>
+</div>
+
+<div class="widget-box">
+	<div class="widget-header">
+		<h4 class="widget-title">Summary</h4>
+		<span class="widget-toolbar">
+			<a href="#" data-action="collapse">
+				<i class="ace-icon fa fa-chevron-up"></i>
+			</a>
+		</span>
+	</div>
+
+	{{=form.custom.begin}}
+	<div class="widget-body">
+		<div class="widget-main">
+		    <div class='row'>
+				<div class='col-md-3'>
+					<div class='form-group'>
+						<label>Reg.No.</label>
+						<div class="input input-group">
+							{{=form.custom.widget.reg_no_id}}						
+						</div>
+					</div>
+				</div>
+				<div class='col-md-4'>
+					<div class='form-group'>
+						<label>Date Range</label>
+					
+						<div class="input-daterange input-group">
+							{{=form.custom.widget.start_date}}
+							<span class="input-group-addon">
+								<i class="fa fa-exchange"></i>
+							</span>
+							{{=form.custom.widget.end_date}}
+						</div>
+					</div>
+				</div>
+				<div class='col-md-3'>
+					</br>
+					
+						{{=form.custom.submit}}	{{=form.custom.end}}
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</br>
+</br>
+    {{if pdf_link:}}
+    {{=pdf_link}}
+    {{pass}}
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		{{=table}} 
+	</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    function PrintContent() 
+        {
+            var DocumentContainer = document.getElementById('target_warpper');
+            var WindowObject = window.open('', 'PrintWindow', 'width = 1100,height=700,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes');
+
+            WindowObject.document.writeln('<!DOCTYPE html>');
+            WindowObject.document.writeln('<html><head><title>Vehicle Management System Report</title>');
+            WindowObject.document.writeln('<link rel="stylesheet" type="text/css" href="{{=URL("static", "css/tablereport.css")}}">');
+            WindowObject.document.writeln('</head><body style = "font-size:80%;font-family: Tahoma, Arial, serif; margin:10px;width:98%;height:100%;">')
+            WindowObject.document.writeln('<h1 align = center>Darwish Group</h1>')
+            WindowObject.document.writeln('<h2 align = center>Vehicle Management System</h2>')
+            WindowObject.document.writeln('<h3 align = center>Fuel Expenses Report</h3>')
+
+            WindowObject.document.writeln(DocumentContainer.innerHTML);
+
+            WindowObject.document.writeln('</body></html>');
+
+            WindowObject.document.close();
+            WindowObject.focus();
+            WindowObject.print();
+            WindowObject.close();
+        }
+</script>

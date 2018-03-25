@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+<div class="one" id="a" onclick="jQuery('.two').slideToggle()">Hello</div>
+
+{{=A(TAG.i(_class="icon-plus-sign"), _rel="tooltip", _title="Create record.", _class="btn", _href='#', _onclick="jQuery('.two').slideToggle();")}}
+
+<div class = "two hidden" id = "b">
+  {{=LOAD('default','Driver.load', ajax=True)}}
+</div>

@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+<div class="one" id="a">Hello</div>
+<div class="two" id="b">Hi</div>
+<script>
+jQuery(document).ready(function(){
+   jQuery('.one').click(function(){jQuery('.two').slideToggle()});
+});
+</script>
+

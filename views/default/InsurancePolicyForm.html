@@ -1,0 +1,58 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Insurance Policy<small><i class="ace-icon fa fa-angle-double-right"></i> a data entry for insurance policy.</small></h1>
+</div>
+ <div class="flash">{{=response.flash or ''}}</div>
+<div class="hr hr8 hr-single hr-dotted"></div>
+{{=form.custom.begin}}
+<div class="widget-box">
+  <div class="widget-header">
+    <h4 class="widget-title">Insurance Policy Form</h4>
+    <div class="widget-toolbar">
+    <a href="#" data-action="collapse">
+        <i class="ace-icon fa fa-chevron-up"></i>
+    </a>
+    </div>
+
+  </div>
+  <div class="widget-body">
+  <div class="widget-main">
+    <div class="row">
+        <div class="form-horizontal col-md-6">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Company</label>
+                <div class="col-sm-8">{{=form.custom.widget.company_id}}</div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Insurance Company</label>
+                <div class="col-sm-8">{{=form.custom.widget.insurance_company_id}}</div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Policy No</label>
+                <div class="col-sm-8">{{=form.custom.widget.policy_no}}</div>
+            </div>        
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Fr.Pe.Covered</label>
+                <div class="col-sm-8">{{=form.custom.widget.from_period_covered}}</div>
+            </div>  
+            <div class="form-group">
+                <label class="col-sm-4 control-label">To.Pe.Covered</label>
+                <div class="col-sm-8">{{=form.custom.widget.period_covered}}</div>
+            </div>                                     
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Amount</label>
+                <div class="col-sm-8">{{=form.custom.widget.amount}}</div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Status</label>
+                <div class="col-sm-8">{{=form.custom.widget.status_id}}</div>
+            </div>                           
+            <div class="form-group">
+                <label class="col-sm-4 control-label"></label>
+                <div class="col-sm-8">{{=form.custom.submit}}{{=form.custom.end}}</div>
+            </div>            
+        </div>            
+    </div>
+</div>
+</div>
+</div>

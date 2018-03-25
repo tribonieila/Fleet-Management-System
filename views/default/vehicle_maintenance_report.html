@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+<h3>Vehicle maintenance report</h3>
+{{=form}}
+{{if pdf_link:}}
+    {{=pdf_link}}
+{{pass}}
+
+{{=table}}
+<table>
+    <tr>
+        <td><h4>Total Amount:</h4></td>
+        <td><h4>{{=XML("%.2f" % (grand_total or 0))}}</h4></td>
+    </tr>
+    
+</table>

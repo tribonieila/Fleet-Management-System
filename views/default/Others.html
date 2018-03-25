@@ -1,0 +1,26 @@
+{{extend 'layout.html'}}
+<h3>Other's</h3>
+
+ <script>
+$(function() {
+$( "#tabs" ).tabs({
+event: "mouseover"
+});
+});
+</script>
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Cancelled</a></li>
+		<li><a href="#tabs-2">Insurance Policy History</a></li>
+		<li><a href="#tabs-3">Ads. History</a></li>
+	</ul>
+	<div id="tabs-1">
+		{{=LOAD(f="Cancelled.load",  ajax=True, ajax_trap=True)}}
+	</div>
+	<div id="tabs-2">
+		{{=LOAD(f="InsPolicyNotification.load",  ajax=True, ajax_trap=True)}}
+	</div>
+	<div id="tabs-3">
+		{{=LOAD(f="DriverNotification.load",  ajax=True, ajax_trap=True)}}
+	</div>
+</div>

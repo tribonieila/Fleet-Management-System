@@ -1,0 +1,73 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Driver Position<small><i class="ace-icon fa fa-angle-double-right"></i> a data entry for the driver position.</small></h1>
+</div>
+
+{{=form.custom.begin}}
+<div class="widget-box">
+  <div class="widget-header">
+    <h4 class="widget-title">Driver Position Form</h4>
+    <div class="widget-toolbar">
+    <a href="#" data-action="collapse">
+        <i class="ace-icon fa fa-chevron-up"></i>
+    </a>
+    </div>
+  </div>
+  <div class="widget-body">
+  <div class="widget-main">
+    <div class='row'>	
+        <div class='form-horizontal col-md-6'>
+            <div class='form-group'>
+                <label class='col-sm-4 control-label'>Position Name:</label>
+                <div class='col-sm-8'>{{=form.custom.widget.name}}</div>
+            </div>
+            <div class='form-group'>
+                <label class='col-sm-4 control-label'></label>
+	           <div class='col-sm-8'>{{=form.custom.submit}}</div>
+            </div>
+        </div>
+    </div>
+   </div>
+  </div>
+ </div>    
+{{=form.custom.end}}   
+
+        </br></br>
+        
+        <div class="table-header">Results for "Latest Driver Position"</div>
+{{=table}}
+<script>
+$(document).ready(function() { 
+    var today = new Date();
+    var date = today.getFullYear()+''+(today.getMonth()+1)+''+today.getDate();
+    var time = today.getHours() + "" + today.getMinutes() + "" + today.getSeconds();
+    var CurrentDateTime = date+''+time;
+    var myTable = $('table.table').DataTable({
+        dom: 'Bfrtip',       
+        "columnDefs": [{
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        }],
+
+        "order": [[1, 'asc']],
+        buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Export to Excel',
+            title: CurrentDateTime,
+            titleAttr: "Export to Excel",
+            className: "btn btn-white btn-primary btn-bold"
+          
+        }]        
+    });
+
+    myTable.on('order.dt search.dt', function () {
+        myTable.table(this).column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i+1;
+        });
+    }).draw();
+
+
+});
+</script>

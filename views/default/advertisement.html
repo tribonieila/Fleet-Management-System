@@ -1,0 +1,71 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Advertisement<small><i class="ace-icon fa fa-angle-double-right"></i> a data list for the vehicle advertisement.</small></h1>
+</div>
+
+<div class="flash">{{=response.flash or ''}}</div>
+
+<div class="hr hr8 hr-single hr-dotted"></div>
+
+
+<div class="tabbable">
+    <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+        <li class="active"><a data-toggle="tab" href="#active" aria-expanded="true">Active</a></li>
+        <li class=""><a data-toggle="tab" href="#non-active" aria-expanded="false">Non-Active</a></li>
+        <li class=""><a data-toggle="tab" href="#non-adv" aria-expanded="false">Non-Advertisement</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="active" class="tab-pane active">{{=LOAD('default', 'ActiveAdvertisement.load')}}</div>
+        <div id="non-active" class="tab-pane">{{=LOAD('default', 'NonActiveAdvertisement.load')}}</div>
+        <div id="non-adv" class="tab-pane">{{=LOAD('default', 'WithoutAdvertisement.load')}}</div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() { 
+    var today = new Date();
+    var date = today.getFullYear()+''+(today.getMonth()+1)+''+today.getDate();
+    var time = today.getHours() + "" + today.getMinutes() + "" + today.getSeconds();
+    var CurrentDateTime = date+''+time;
+    var myTable = $('table.table').DataTable({
+        dom: 'Bfrtip',  
+        bAutoWidth: false,     
+        "columnDefs": [{
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        }],
+
+        "order": [[1, 'asc']],
+        buttons: [
+        {
+            "extend": "excel",
+            "exportOptions": {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7] },           
+            "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> Export to Excel",
+            "titleAttr": " Export to Excel",
+            "className": "btn btn-link"
+          
+        }]        
+    });
+
+    myTable.on('order.dt search.dt', function () {
+        myTable.table(this).column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i+1;
+        });
+    }).draw();
+
+    myTable.buttons().container().appendTo( '#' + myTable.table().container().id + ' .col-sm-6:eq(0)' ); 
+
+});
+</script>                            
+<style>
+.dataTables_length, .dt-buttons {
+  float: left;
+  margin-right: 10px;    
+}
+</style>
+
+
+	

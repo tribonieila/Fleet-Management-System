@@ -1,0 +1,58 @@
+{{extend 'layout.html'}}
+<h2 align = 'center'>Maintenance Expenses Form</h2>
+{{=form.custom.begin}}
+    <table width="100%">
+        <tr>
+            <td>Reg.No.:</td>
+            <td>{{=form.custom.widget.reg_no_id}}</td>
+        </tr>
+        <tr>
+            <td>Invoice Date:</td>
+            <td>{{=form.custom.widget.invoice_date}}</td>
+            <td>Invoice No.:</td>
+            <td>{{=form.custom.widget.invoice_number}}</td>
+        </tr>
+        <tr>
+            <td>Date-In:</td>
+            <td>{{=form.custom.widget.date_time_in}}</td>
+            <td>Date-Out:</td>
+            <td>{{=form.custom.widget.date_time_out}}</td>
+
+        </tr>
+
+        <tr>
+            <td>Labour:</td>
+            <td>{{=form.custom.widget.regular_maintenance}}</td>
+            <td>Spare Parts:</td>
+            <td>{{=form.custom.widget.spare_parts}}</td>            
+        </tr>
+        <tr>
+
+            <td>Statutory Expenses:</td>
+            <td>{{=form.custom.widget.statutory_expenses}}</td>
+            <td>Accident Repair:</td>
+            <td>{{=form.custom.widget.accident_repair}}</td>            
+
+        </tr>
+        <tr>
+            <td>Workshop Done:</td>
+            <td>{{=form.custom.widget.workshop_done}}</td>
+            <td>Mileage:</td>
+            <td>{{=form.custom.widget.mileage}}</td>
+        </tr>
+        <tr>
+            <td>Details:</td>
+            <td>{{=form.custom.widget.details}}</td>
+        </tr>
+        <tr>
+            <td>Print after submit?</td>
+            <td>{{=form.custom.widget.printys}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{=form.custom.submit}}</td>
+            <td>{{=form.custom.end}}</td>
+            
+        </tr>
+    </table>
+{{=grid}}

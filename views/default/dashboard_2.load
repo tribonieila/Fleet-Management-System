@@ -1,0 +1,71 @@
+
+<div class="widget-box transparent">
+    <div class="widget-header widget-header-flat">
+        <h4 class="widget-title lighter"><i class="ace-icon fa fa-star orange"></i>Active & Non-Active Fleet Controller</h4>
+        <div class="widget-toolbar"><a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a></div>
+    </div>
+
+    <div style="display: block;" class="widget-body">
+        <div class="widget-main no-padding">
+            <div id="barchart_div" style="min-width: 310px; height: 550px; margin:0 auto"></div>
+        </div><!-- /.widget-main -->
+    </div><!-- /.widget-body -->
+</div><!-- /.widget-box -->
+
+<script type="text/javascript">
+$(function () {
+    $('#barchart_div').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Controller Chart'
+        },
+        xAxis: {
+            categories: [{{for u in mai_que:}}
+                            '{{=u.division.division.upper()}}',
+                        {{pass}}],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Maitenance',
+            data: [{{for m in mai_que:}}{{=m[db.repair_history.reg_no_id.count()]}},{{pass}}]
+        }, {
+            name: 'Fuel',
+            data: [{{for f in fue_que:}}{{=f[db.fuel_expenses.reg_no_id.count()]}},{{pass}}]
+        }, {
+            name: 'Mileage',
+            data: [{{for k in mil_que:}}{{=k[db.km_used.reg_no_id.count()]}},{{pass}}]
+        }]
+    });
+});
+</script>

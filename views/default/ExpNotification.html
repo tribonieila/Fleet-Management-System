@@ -1,0 +1,60 @@
+{{extend 'layout.html'}}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="header-icon">
+                <span class="glyphicon glyphicon-time"></span>
+            </div>
+            <div class="header-title">
+                <h3>Expiration Notification</h3>
+                <small>
+                    List of vehicle expiration notification.
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation"><a href="#ins_pol" aria-controls="ins_pol" role="tab" data-toggle="tab">Road Permit</a></li>
+    <li role="presentation"><a href="#ins_veh" aria-controls="ins_veh" role="tab" data-toggle="tab">Insurance Policy</a></li>
+    <li role="presentation"><a href="#ins_veh" aria-controls="ins_veh" role="tab" data-toggle="tab">Driving License</a></li>    
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="ins_pol">
+        <div class="panel-body">
+
+        </div>      
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ins_veh">
+        <div class="panel-body">
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+ 
+
+<script>
+$(function() { 
+    // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        // save the latest tab; use cookies if you like 'em better:
+        localStorage.setItem('lastTab', $(this).attr('href'));
+    });
+
+    // go to the latest tab, if it exists:
+    var lastTab = localStorage.getItem('lastTab');
+    if (lastTab) {
+        $('[href="' + lastTab + '"]').tab('show');
+    }
+});
+</script>

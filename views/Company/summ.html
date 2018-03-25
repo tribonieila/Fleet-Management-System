@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+<script> 
+
+ $(document).ready(function(){
+   $('#button').click(function(){ 
+    ajax("{{=URL(r=request, c='teste',f='sum.load')}}",['name'],'target'); 
+        return false; 
+    }); 
+ });
+    
+</script> 
+<form>
+<input name='name' id='name' />
+</form>
+<a id="button">CLICK HERE</a>
+<span id='target'></span>

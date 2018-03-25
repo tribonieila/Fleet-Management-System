@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+<a data-target="#some_modal" data-toggle="modal"> Open modal</a>
+        <div id="some_modal" class="modal hide fade">
+            <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button>&nbsp;</div>
+            <div class="modal-body">{{=LOAD('default','Browse.load', ajax=True, ajax_trap=True, user_signature=True)}}</div>
+            <div class="modal-footer">&nbsp;</div>
+        </div>

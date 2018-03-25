@@ -1,0 +1,47 @@
+{{extend 'layout.html'}}
+
+<div class="page-header">
+    <h1>Company Fleet<small><i class="ace-icon fa fa-angle-double-right"></i> a list of company fleet.</small></h1>
+</div>
+
+<div class="clearfix">
+    <div class="pull-right tableTools-container"></div>
+</div>
+<div class="table-header">
+    Results for "Latest Company Fleet"
+</div>
+{{=table}}
+
+<script>
+$(document).ready(function() {
+    var myTable = $('table.table')
+    
+    .DataTable( {
+        bAutoWidth: false,
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 1, 'desc' ]],
+    });
+ 
+
+	
+				
+	new $.fn.dataTable.Buttons( myTable, {
+		buttons: [
+
+		  {
+			"extend": "excel",
+			"exportOptions": {
+                    columns: [ 1, 2, 3, 4, 5, 6, 7,8,9 ] },			
+			"text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+			"titleAttr": "Export to Excel",
+			"className": "btn btn-white btn-primary btn-bold"
+		  }  
+		]
+	} );
+	myTable.buttons().container().appendTo( $('.tableTools-container') );
+} );
+</script>         

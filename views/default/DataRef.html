@@ -1,0 +1,155 @@
+{{extend 'layout.html'}}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="header-icon">
+                <span class="glyphicon glyphicon-link"></span>
+            </div>
+            <div class="header-title">
+                <h3>Data Reference's</h3>
+                <small>
+                    Access list of master data reference's.
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="tabs-container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true" title="Company"> <i class="fa fa-building"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false" title="Division"><i class="fa fa-building-o"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false" title="Department"><i class="fa fa-briefcase"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false" title="Owner"><i class="fa fa-male"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-5" aria-expanded="false" title="Controller"> <i class="fa fa-users"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-6" aria-expanded="false" title="Manufacturer"><i class="fa fa-copyright"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-7" aria-expanded="false" title="Vehicle Category"><i class="fa fa-th-list"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-8" aria-expanded="false" title="Vehicle Purpose"><i class="fa fa-legal"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-9" aria-expanded="false" title="Vehicle Status"> <i class="fa fa-ticket"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-10" aria-expanded="false" title="Vehicle Insurance"><i class="fa fa-ambulance"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-11" aria-expanded="false" title="Workshop"><i class="fa fa-gear"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-12" aria-expanded="false" title="Insurance Policy Status"><i class="fa fa-medkit"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-13" aria-expanded="false" title="Advertisement Status"><i class="fa fa-adn"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-14" aria-expanded="false" title="Authorized Vehicle"><i class="fa fa-automobile"></i></a></li>
+        <li class=""><a data-toggle="tab" href="#tab-15" aria-expanded="false" title="Driver Position"><i class="fa fa-tasks"></i></a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab-1" class="tab-pane active">
+	        <div class="panel-body">
+	            <strong class="c-white">Company</strong>
+				{{=LOAD('default', 'GroupCompany.load')}}                	
+	        </div>
+        </div>
+        <div id="tab-2" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Division</strong>
+				{{=LOAD('default', 'Division.load')}}      
+            </div>
+        </div>
+        <div id="tab-3" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Department</strong>
+                {{=LOAD('default', 'Department.load')}}    
+            </div>
+        </div>
+        <div id="tab-4" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Owner</strong>
+                {{=LOAD('default', 'owner.load')}}    
+            </div>
+        </div>
+        <div id="tab-5" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Controller</strong>
+                {{=LOAD('default', 'Controller.load')}}    
+            </div>
+        </div>
+        <div id="tab-6" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Manufacturer</strong>
+                {{=LOAD('default', 'Manufacturer.load')}}    
+            </div>
+        </div>
+        <div id="tab-7" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Vehicle Category</strong>
+				{{=LOAD('default', 'vehicle_category.load')}}    
+            </div>
+        </div>
+        <div id="tab-8" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Vehicle Purpose</strong>
+				{{=LOAD('default', 'vehicle_purpose.load')}}  
+            </div>
+        </div>
+        <div id="tab-9" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Vehicle Status</strong>
+				{{=LOAD('default', 'vehicle_status.load')}}  
+            </div>
+        </div>
+        <div id="tab-10" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Vehicle Insurance</strong>
+				{{=LOAD('default', 'insurance.load')}}  
+            </div>
+        </div>
+        <div id="tab-11" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Workshop</strong>
+				{{=LOAD('default', 'workshop.load')}}              
+			</div>
+        </div>
+        <div id="tab-12" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Insurance Policy Status</strong>
+				{{=LOAD('default', 'InsPolStatus.load')}}              
+            </div>
+        </div>
+        <div id="tab-13" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Advertisement Status</strong>
+				{{=LOAD('default', 'AdsStatus.load')}}              
+            </div>
+        </div>
+        <div id="tab-14" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Authorized Vehicle</strong>
+				{{=LOAD('default', 'authorized_vehicle_category.load')}}              
+            </div>
+        </div>
+        <div id="tab-15" class="tab-pane">
+            <div class="panel-body">
+                <strong class="c-white">Driver Position</strong>
+                {{=LOAD('default', 'driver_position.load')}}    
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+
+    var t = $('table.table').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "select": true,
+        "order": [[ 1, 'asc' ]],
+    });
+ 
+
+    t.on('order.dt search.dt', function () {
+        t.table(this).column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i+1;
+        });
+    }).draw();
+} );
+</script>                            
+
+ 
+
+

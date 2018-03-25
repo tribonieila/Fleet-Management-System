@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+<h1 align="center">Department Vehicles Report</h1>
+{{=form}}
+    {{if img_report:}}
+    {{=img_report}}
+    {{pass}}
+</BR>
+
+<div id="target_warpper">
+    <div id="target">    
+		{{=table}} 
+	</div>
+</div>
+
+<script type="text/javascript">
+    function PrintContent() 
+        {
+            var DocumentContainer = document.getElementById('target_warpper');
+            var WindowObject = window.open('', 'PrintWindow', 'width = 1100,height=700,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes');
+
+            WindowObject.document.writeln('<!DOCTYPE html>');
+            WindowObject.document.writeln('<html><head><title>Vehicle Management System Report</title>');
+            WindowObject.document.writeln('<link rel="stylesheet" type="text/css" href="{{=URL("static", "css/tablereport.css")}}">');
+            WindowObject.document.writeln('</head><body style = "font-size:70%;font-family: Tahoma, Arial, serif; margin:10px;width:98%;height:100%;">')
+            WindowObject.document.writeln('<img src="{{=URL("static", "images/header_report.jpg")}}"></img>')
+            WindowObject.document.writeln('<hr></br>')
+            WindowObject.document.writeln('<h2 align = center>Department Vehicles Report</h2>')
+
+            WindowObject.document.writeln(DocumentContainer.innerHTML);
+
+            WindowObject.document.writeln('</body></html>');
+
+            WindowObject.document.close();
+            WindowObject.focus();
+            WindowObject.print();
+            WindowObject.close();
+        }
+</script>

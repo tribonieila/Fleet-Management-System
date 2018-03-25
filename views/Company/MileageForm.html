@@ -1,0 +1,33 @@
+{{extend 'layout.html'}}
+
+<div class="page-header">
+    <h1>Mileage<small><i class="ace-icon fa fa-angle-double-right"></i> a data entry for the fleet mileage.</small></h1>
+</div>
+<div class="widget-box">
+  	<div class="widget-header"><h4 class="widget-title">Mileage Form</h4></div>
+  	<div class="widget-body">
+		<div class="widget-main">
+            <div class="row">
+                <div class="form-horizontal col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Reg.No.</label>
+                        <div class="col-sm-8">{{=form.custom.widget.reg_no_id}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Given Month</label>
+                        <div class="col-sm-8">{{=form.custom.widget.given_month}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Given Odometer</label>
+                        <div class="col-sm-8">{{=form.custom.widget.current_mil}}</div>
+                    </div>          
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">{{=form.custom.submit}}{{=form.custom.end}}</div>
+                    </div>            
+                </div>        
+            </div>
+	   	</div>
+	</div>
+ </div>    
+

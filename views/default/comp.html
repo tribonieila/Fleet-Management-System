@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+<h3 align="center">Hand Over Form</h3>
+
+<table>{{=form.custom.begin}}
+	<tr>
+		<td>Company:</td><td>{{=form.custom.widget.company_id}}</td>
+		<td>Division:</td><td>{{=form.custom.widget.division_id}}</td>
+		<td>Department:</td><td>{{=form.custom.widget.department_id}}</td>
+
+	</tr>
+        <td></td>
+        <td>{{=form.custom.submit}}</td>   
+        <td>{{=form.custom.end}}</td>
+        <td></td>
+    </tr>
+
+</table>{{pass}}

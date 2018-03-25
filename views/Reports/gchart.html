@@ -1,0 +1,71 @@
+{{extend 'layout.html'}}
+<div id="chart_div"></div>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+google.load('visualization', '1', {packages: ['gauge']});
+google.setOnLoadCallback(drawChart);
+
+function drawChart() {    
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Gauge');
+    data.addColumn('number', 'Value');
+    data.addRows([
+        ['RPM', 5600]
+    ]);
+    
+    // make a temporary view to draw the chart in a blank state
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, {
+        // create a calculated column that contains all zero's
+        type: 'number',
+        calc: function () {
+            return 0;
+        }
+    }]);
+    
+    var chart = new google.visualization.ChartWrapper({
+        chartType: 'Gauge',
+        containerId: 'chart_div',
+        dataTable: view,
+        options: {
+            animation: {
+                duration: 2000
+            },
+            height: 300,
+            width: 300,
+            greenFrom: 0,
+            greenTo: 4000,
+            yellowFrom: 4000,
+            yellowTo: 7000,
+            redFrom: 7000,
+            redTo: 8000,
+            max: 8000
+        }
+    });
+    
+    var runOnce = google.visualization.events.addListener(chart, 'ready', function () {
+        google.visualization.events.removeListener(runOnce);
+        // use the real data to redraw
+        chart.setDataTable(data);
+        
+        var runOnce2 = google.visualization.events.addListener(chart, 'ready', function () {
+            google.visualization.events.removeListener(runOnce2);
+            setTimeout(function () {
+                chart.setOption('animation.duration', 100);
+                
+                setInterval(function () {
+                    var val = data.getValue(0, 1);
+                    var mod = Math.round(Math.random() * 15);
+                    val += (val < 5600) ? mod : -1 * mod;
+                    data.setValue(0, 1, val);
+                    chart.draw();
+                }, 150);
+            }, 1700);
+        });
+        
+        chart.draw();
+    });
+    
+    chart.draw();
+}
+</script>

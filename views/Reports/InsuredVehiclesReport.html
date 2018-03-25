@@ -1,0 +1,40 @@
+{{extend 'layout.html'}}
+<H1 align = 'center'>Insurance Policy Report</H1>
+{{if img_report:}}
+    {{=img_report}}
+{{pass}}
+</br>
+<div id="target_warpper">
+    <div id="target">
+		{{=ip_report}}
+        &nbsp;
+        
+		{{=i_vehicle}}
+        
+        <h3>Grand Total Amount: QR {{=locale.format("%.2f", grand_total, grouping = True)}}</h3>
+    </div>
+</div>
+<script type="text/javascript">
+    function PrintContent() 
+        {
+            var DocumentContainer = document.getElementById('target_warpper');
+            var WindowObject = window.open('', 'PrintWindow', 'width = 1100,height=700,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes');
+            WindowObject.document.writeln('<!DOCTYPE html>');
+            WindowObject.document.writeln('<html><head><title>Vehicle Management System Report</title>');
+            WindowObject.document.writeln('<link rel="stylesheet" type="text/css" href="{{=URL("static", "css/tablereport.css")}}">');
+            WindowObject.document.writeln('</head><body style = "font-family: Arial, Tahoma, serif;">')
+            WindowObject.document.writeln('<h1 align = center>Darwish Group</h1>')
+            WindowObject.document.writeln('<h2 align = center>Vehicle Management System</h2>')
+            WindowObject.document.writeln('<h3 align = center>Insurance Policy Report</h3>')
+
+            WindowObject.document.writeln(DocumentContainer.innerHTML);
+
+            WindowObject.document.writeln('</body></html>');
+
+            WindowObject.document.close();
+            WindowObject.focus();
+            WindowObject.print();
+            WindowObject.close();
+        }
+</script>
+

@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+
+    <style type="text/css">
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        font-family: arial, helvetica, sans-serif;
+      }
+      table {
+        border-collapse: collapse;
+        margin: 10px;
+      }
+      table td, table th {
+        border: 1px solid black;
+      }
+      @media print {
+        table td, table th {
+          border: 1px solid black;
+        }
+        body {
+          font-family: serif;
+        }
+      }
+    </style>
+    <h1>TITLE</h1>
+    <table>
+      <tr><th>11</th><th>12</th><tr>
+      <tr><td>21</td><td>22</td><tr>
+    </table>

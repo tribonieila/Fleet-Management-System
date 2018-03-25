@@ -1,0 +1,80 @@
+{{extend 'layout.html'}}
+<script type="text/javascript" src="{{=URL('static','js/jquery.sheepItPlugin.js')}}"></script>
+
+<style type="text/css">
+
+#sheepItForm_controls div, #sheepItForm_controls div input {
+    float:left;    
+    margin-right: 10px;
+}
+
+td {
+  padding:4px;
+}
+
+
+</style>
+
+<div class="page-header">
+    <h1>Fuel Expenses<small><i class="ace-icon fa fa-angle-double-right"></i> a data entry for fuel maintenance.</small></h1>
+</div>
+
+<div class="flash">{{=response.flash or ''}}</div>
+
+<div class="hr hr8 hr-single hr-dotted"></div>
+
+<div class="widget-box">
+    <div class="widget-header">
+        <h4 class="widget-title">Fuel Expenses Batch Form</h4><span class="widget-toolbar"><a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a></span>
+    </div>    
+    <div class="widget-body">
+        
+        <div class="widget-main">
+        <div class='space-6'></div>
+        
+        {{=form}}
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+     
+    var sheepItForm = $('#sheepItForm').sheepIt({
+        separator: '',
+        allowRemoveLast: true,
+        allowRemoveCurrent: true,
+        allowRemoveAll: true,
+        allowAdd: true,
+        allowAddN: true,
+        
+        // Limits
+        maxFormsCount: 100,
+        minFormsCount: 0,
+        iniFormsCount: 1,
+        
+        removeLastConfirmationMsg: 'Are your sure?',
+        removeCurrentConfirmationMsg: 'Are your sure?',
+        removeAllConfirmationMsg: 'Are your sure?',
+        
+        afterAdd: function(source, newForm) {
+            
+            // Add events for focus to the new cloned form
+            $(newForm).find('input').focus(function() {
+                $(this).addClass("focus");
+            });
+            $(newForm).find('input').blur(function() {
+                $(this).removeClass("focus");
+            });
+            
+        }      
+    });
+ 
+});
+
+</script>
+
+
+

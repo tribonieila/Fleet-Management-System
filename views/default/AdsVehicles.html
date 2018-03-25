@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}  
+<h3>Vehicle Advertisement</h3>
+{{=LOAD('default', 'AdsVehiclesInfo.load', request.args(0))}}
+{{=ads_table}}

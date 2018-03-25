@@ -1,0 +1,61 @@
+{{extend 'layout.html'}}
+<h3>Driver's List</h3>
+{{=A(TAG.i(_class="icon-plus-sign"), _rel="tooltip", _title="Create record.", _class="btn", _href='#', _onclick="jQuery('.two').slideToggle();")}}
+
+<div class = "two hidden" id = "b">
+  
+
+{{=form.custom.begin}}
+<table width = '100%' align = 'center'>
+	<tr>
+		<td width = '10%'><b>Company:</b></td>
+		<td width = '10%'><b>Division:</b></td>
+		<td width = '10%'><b>Department:</b></td>
+	</tr>
+	<tr>
+		<td width = '10%'>{{=form.custom.widget.company_id}}</td>
+		<td width = '10%'>{{=form.custom.widget.division_id}}</td>
+		<td width = '10%'>{{=form.custom.widget.department_id}}</td>
+		
+	</tr>
+	<tr>
+		<td width = '10%'><b>Employee No.:</b></td>
+		<td width = '10%'><b>Driver Name:</b></td>
+		<td width = '10%'><b>Position:</b></td>
+		
+	</tr>
+	<tr>
+		<td width = '10%'>{{=form.custom.widget.employee_number}}</td>
+		<td width = '10%'>{{=form.custom.widget.driver_name}}</td>
+		<td width = '10%'>{{=form.custom.widget.position_id}}</td>
+		
+	</tr>
+	<tr>
+		<td width = '10%'><b>License No.:</b></td>
+		<td width = '10%'><b>Expiration Date:</b></td>
+		<td width = '10%'><b>Contact No.:</b></td>
+		
+	</tr>
+	<tr>
+		<td width = '10%'>{{=form.custom.widget.driver_id}}</td>
+		<td width = '10%'>{{=form.custom.widget.expiry_date}}</td>
+		<td width = '10%'>{{=form.custom.widget.contact_no}}</td>
+	</tr>
+	<tr>
+		<td width = '10%'><b>Driver License:</b></td>
+		<td width = '10%'><b>Category:</b></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td width = '10%'>{{=form.custom.widget.driver_license}}</td>
+		<td width = '10%'>{{=form.custom.widget.license_category_id}}</td>
+		<td width = '10%'>{{=form.custom.widget.alertdate}}</td>
+		<td></td>
+	</tr>
+ <td>{{=form.custom.submit}}</td>   
+ <td>{{=form.custom.end}}</td>
+</table>
+{{pass}}
+</div>
+{{=grid}}

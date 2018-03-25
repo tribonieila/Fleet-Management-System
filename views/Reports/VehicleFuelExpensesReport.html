@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+<h1>Vehicle Fuel Expenses Report</h1>
+{{=form}}
+{{if pdf_link:}}
+    {{=pdf_link}}
+{{pass}}
+{{=i}}
+{{=table}}
+<table>
+    <tr>
+        <td><h4>Total Amount:</h4></td>
+        <td><h4>{{=XML("%.2f" % (total_amount or 0))}}</h4></td>
+    </tr>
+    
+</table>

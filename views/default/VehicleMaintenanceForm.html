@@ -1,0 +1,62 @@
+{{extend 'layout.html'}}
+{{=form.custom.begin}}
+    <table  class="myform" width="100%">
+        <tr><td colspan="4" id="titlehead"><h1>Vehicle Maintenance Form</h1></td></tr>
+        <tr><td colspan="4" id="subtitle"><p>This is the entry for the company vehicle maintenance.</p> </td></tr>
+        <tr><td colspan="4" class="tablehead">Invoice Info </td></tr>
+        <tr>
+            <td><label>Reg.No.:</label><span class="small">Add the registration number.</span></td>
+            <td>{{=form.custom.widget.reg_no_id}}</td>
+            <td><label>Invoice No.:</label><span class="small">Add the invoice number.</span></td>
+            <td>{{=form.custom.widget.invoice_number}}</td>
+        </tr>
+        <tr>
+            <td><label>Invoice Date:</label><span class ="small">Add the invoice date.</span></td>
+            <td>{{=form.custom.widget.invoice_date}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr><td colspan="4" class="tablehead">Expenditure Info</td></tr>
+        <tr>
+            <td><label>Running Expenses:</label><span class="small">Tyre, Battery, Puncture, Brake, Clutch, etc.</span></td>
+            <td>{{=form.custom.widget.running_expenses}}</td>
+            <td><label>Regular Maintenance:</label><span class="small">Service, Oil/Filter Change</span></td>
+            <td>{{=form.custom.widget.regular_maintenance}}</td>
+        </tr>
+        <tr>
+            <td><label>Repair Expenses:</label><span class="small">Engine Repair, Mechanical Repair, Painting, etc.</span></td>
+            <td>{{=form.custom.widget.repair_expenses}}</td>
+            <td><label>Accident Repair:</label><span class="small">Add accident repair.</span></td>
+            <td>{{=form.custom.widget.accident_repair}}</td>            
+        </tr>
+        <tr>
+            <td><label>Statutory Expenses:</label><span class="small">Insurance, Road Permit Renewal, Advertisement License</span></td>
+            <td>{{=form.custom.widget.statutory_expenses}}</td>
+            <td><label>Spare Parts:</label><span class="small">Add spare parts</span></td>
+            <td>{{=form.custom.widget.spare_parts}}</td>            
+        </tr>
+        <tr><td colspan="4" class="tablehead">Other's Info</td></tr>
+        <tr>
+            <td><label>Workshop Done:</label><span class="small">Add the workshop done.</span></td>
+            <td>{{=form.custom.widget.workshop_done}}</td>
+            <td><label>Mileage:</label><span class="small">Add the mileage.</span></td>
+            <td>{{=form.custom.widget.mileage}}</td>
+        </tr>
+        <tr>
+            <td><label>Details:</label><span class="small">Add details here.</span></td>
+            <td>{{=form.custom.widget.details}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{=form.custom.submit}}</td>
+            <td>{{=form.custom.end}}</td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+
+

@@ -1,0 +1,215 @@
+{{extend 'layout.html'}}
+
+<div class="page-header">
+    <h1>Fleet Form<small><i class="ace-icon fa fa-angle-double-right"></i> a data entry for new fleet.</small></h1>
+</div>
+<div class="flash">{{=response.flash or ''}}</div>
+<div class="hr hr8 hr-single hr-dotted"></div>
+
+
+{{=grid.custom.begin}}
+<div class="widget-box">
+  <div class="widget-header">
+    <h4 class="widget-title">Company Info</h4>
+    <div class="widget-toolbar">
+    <a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a>
+    </div>
+  </div>
+  <div class="widget-body">
+    <div class="widget-main">
+        <div class='row'>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Company</label>
+                    {{=grid.custom.widget.company_id}}
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Division</label>
+                    {{=grid.custom.widget.division_id}}
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Department</label>
+                    {{=grid.custom.widget.department}}
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Ownder</label>
+                    {{=grid.custom.widget.owner}}
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="widget-box">
+  <div class="widget-header">
+    <h4 class="widget-title">Vehicle Info</h4>
+    <div class="widget-toolbar">
+    <a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a>
+    </div>
+  </div>
+    <div class="widget-body">
+        <div class="widget-main">
+            <div class='row'>
+                <div class='form-horizontal col-md-4'>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Reg.No.</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.reg_no}}</div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Code</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.vehicle_code}}</div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Name</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.vehicle_name_id}}</div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Chassis</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.chassis_no}}</div>
+                    </div>
+                </div>
+                <div class='form-horizontal col-md-4'>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Type</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.car_type}}</div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Tx</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.transmission}}</div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Model</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.model}}</div>
+                    </div>
+                </div>
+                <div class='form-horizontal col-md-4'>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Mileage</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.mileage}}</div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>CYL CT</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.cylinder_count}}</div>
+                    </div>
+                    <div class='form-group'>
+                        <label class='col-sm-4 control-label'>Tyre Size</label>
+                        <div class='col-sm-8'>{{=grid.custom.widget.tyre_size}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="widget-box">
+    <div class="widget-header">
+        <h4 class="widget-title">Date & Value Info</h4>
+        <div class="widget-toolbar">
+        <a href="#" data-action="collapse">
+        <i class="ace-icon fa fa-chevron-up"></i>
+        </a>
+        </div>
+    </div>
+    <div class="widget-body">
+        <div class='widget-main'>
+        <div class="row">
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Invoice No.</label>
+                    {{=grid.custom.widget.invoice}}
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>1st Registration Date</label>
+                    {{=grid.custom.widget.reg_date}}
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Date of Sale</label>
+                    {{=grid.custom.widget.date_of_sale}}
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Expiration Date</label>
+                    {{=grid.custom.widget.exp_date}}
+                </div>
+            </div>        
+        </div>
+        <div class='row'>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Value Purchase</label>
+                    {{=grid.custom.widget.value_purchase}}
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label>Depreciation Value</label>
+                    {{=grid.custom.widget.depreciation_value}}
+                </div>
+            </div>
+        </div></div>
+    </div>
+</div>
+
+<div class="widget-box">
+    <div class="widget-header">
+        <h4 class="widget-title">Other's Info</h4>
+
+        <div class="widget-toolbar">
+            <a href="#" data-action="collapse">
+                <i class="ace-icon fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>    
+    <div class="widget-body">
+    <div class="widget-main">
+        <div class='row'>
+            <div class='form-horizontal col-md-6'>
+                <div class='form-group'>
+                    <label class='col-sm-4 control-label'>Plate Type</label>
+                    <div class='col-sm-8'>{{=grid.custom.widget.plate_type}}</div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-4 control-label'>Accessories</label>
+                    <div class='col-sm-8'>{{=grid.custom.widget.accessories}}</div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-4 control-label'>Purpose</label>
+                    <div class='col-sm-8'>{{=grid.custom.widget.purpose}}</div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-4 control-label'>Ext. Color Code</label>
+                    <div class='col-sm-8'>{{=grid.custom.widget.ext_color_code}}</div>
+                </div>
+            </div>
+            <div class='form-horizontal col-md-6'>
+                <div class='form-group'>
+                    <label class='col-sm-4 control-label'>Category</label>
+                    <div class='col-sm-8'>{{=grid.custom.widget.category_id}}</div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-4 control-label'>Status</label>
+                    <div class='col-sm-8'>{{=grid.custom.widget.status_id}}</div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-4 control-label'>Remarks</label>
+                    <div class='col-sm-8'>{{=grid.custom.widget.remarks}}</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{{=grid.custom.submit}}
+{{=grid.custom.end}}
+

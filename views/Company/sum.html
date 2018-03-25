@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<script> 
+
+ $(document).ready(function(){
+   $('#button').click(function(){ 
+    ajax("{{=URL(r=request, c='math',f='sum.load')}}",'','target'); 
+        return false; 
+    }); 
+ });
+    
+</script> 
+<a id="button">CLICK HERE</a>
+<span id='target'></span>

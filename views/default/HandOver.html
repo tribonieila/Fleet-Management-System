@@ -1,0 +1,54 @@
+{{extend 'layout.html'}}
+<div class="page-header">
+    <h1>Hand-Over<small><i class="ace-icon fa fa-angle-double-right"></i> a list of hand-over vehicles.</small></h1>
+</div>
+
+<div class="flash">{{=response.flash or ''}}</div>
+<div class="hr hr8 hr-single hr-dotted"></div>
+<div class="table-header">Results for "Latest Hand-Over Fleets"</div>
+{{=table}}
+
+<script>
+$(document).ready(function() {
+    var myTable = $('table.table')
+    
+    .DataTable( {
+        bAutoWidth: false,
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false
+        } ],
+        "order": [[ 1, 'desc' ]],
+    });
+                
+    new $.fn.dataTable.Buttons( myTable, {
+        buttons: [
+
+          {
+            "extend": "excel",
+            "exportOptions": {
+                    columns: [ 0, 1, 2, 3, 4, 5 ] },           
+            "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> Export to Excel",
+            "titleAttr": " Export to Excel",
+            "className": "btn btn-link"
+          }  
+        ]
+    } );
+
+    myTable.on('order.dt search.dt', function () {
+        myTable.table(this).column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i+1;
+        });
+    }).draw();
+        
+    myTable.buttons().container().appendTo( '#' + myTable.table().container().id + ' .col-sm-6:eq(0)' ); 
+} );
+</script>                
+<style>
+.dataTables_length, .dt-buttons {
+  float: left;
+  margin-right: 10px;    
+}
+
+</style>
+                  
