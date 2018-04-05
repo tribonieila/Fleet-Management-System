@@ -12,7 +12,9 @@
 # web2py cache, errors and sessions files
 cache/*
 errors/*
+languages/*
 sessions/*
 cache/*
 uploads/*
 databases/*
+l

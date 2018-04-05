@@ -524,8 +524,8 @@ while (r < row):
     rows[r].update_record(consumed_mil = rows[r].current_mil - rows[r-1].current_mil)
     r +=1
 
-clienttools = local_import('clienttools')
-page = clienttools.PageManager(globals())
-event = clienttools.EventManager(page)
-js = clienttools.ScriptManager(page) # javascript helpers
-jq = clienttools.JQuery # don't instantiate, just to shorten
+# clienttools = local_import('clienttools')
+# page = clienttools.PageManager(globals())
+# event = clienttools.EventManager(page)
+# js = clienttools.ScriptManager(page) # javascript helpers
+# jq = clienttools.JQuery # don't instantiate, just to shorten
